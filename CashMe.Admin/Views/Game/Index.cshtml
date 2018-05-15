@@ -1,0 +1,197 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+    .error-number {
+        font-size: 80px;
+    }
+</style>
+<div class="right_col" role="main">
+    <div style="margin-top:50px">
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+
+                        <div class="bs-example" data-example-id="simple-jumbotron">
+                            <div class="jumbotron">
+                                <h1>Kick me!</h1>
+                                <p>Click vào số hình ảnh muốn cược, nếu thắng, số hình ảnh sẽ cộng trực tiếp vào tài khoản, nếu thua, mất đi số hình ảnh đã cược.</p>
+                                <p>Hình ảnh đang có: <strong class="text-primary totalImage">500</strong></p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="col-md-12 col-xs-12">
+
+                                <div class="col-md-3">
+                                    <label style="font-size:20px">
+                                        <input type="radio" checked="" value="5" id="optionImage5" name="optionImage"> 5 hình ảnh
+                                    </label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label style="font-size:20px">
+                                        <input type="radio" value="20" id="optionImage20" name="optionImage"> 20 hình ảnh
+                                    </label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label style="font-size:20px">
+                                        <input type="radio" value="60" id="optionImage60" name="optionImage"> 60 hình ảnh
+                                    </label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label style="font-size:20px">
+                                        <input type="radio" value="100" id="optionImage100" name="optionImage"> 100 hình ảnh
+                                    </label>
+                                </div>
+
+                            </div>
+                            <div class="clear-fix"></div>
+
+                            <br />
+                            <br />
+                            <br />
+                            <div class="col-md-12">
+                                <div class="col-md-3">
+                                    <a onclick="javascript: setKich(0)">
+                                        <div class="animated flipInY" style="margin-top: 40px;">
+                                            <div class="tile-stats tile-white bg-blue-sky">
+                                                <div class="count">48.5000</div>
+                                                <h3>Under to win!</h3>
+                                                <p class="select0">Đang chọn</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="text-center">
+                                        <h4 class="error-number value">50</h4>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <a onclick="javascript: setKich(1)">
+                                        <div class="animated flipInY" style="margin-top: 40px;">
+                                            <div class="tile-stats tile-white bg-red">
+                                                <div class="count">51.5000</div>
+                                                <h3>Over to win!</h3>
+                                                <p class="select1"></p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="">
+
+                                    <div class="progress progress_sm" style="width: 100%;">
+                                        <div class="progress-bar bg-blue-sky" role="progressbar" style="width: 50%;"></div>
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="button" class="btn btn-round btn-info kick" onclick="kickMe()">Kick me</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <table id="datatable" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Thời gian</th>
+                                    <th>Hình ảnh cược</th>
+                                    <th>Đặt cược</th>
+                                    <th>Kết quả</th>
+                                    <th>Nhận được</th>
+                                </tr>
+                            </thead>
+
+
+                            <tbody>
+                                <tr>
+                                    <td>item.CreateDate.ToString("dd-MM-yyyy hh:mm:ss")</td>
+                                    <td>Html.Raw(item.Content)</td>
+                                    <td>item.Amount</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>
+
+<script>
+    var kick_roll = 0;
+    function setKich(kick) {
+        if (kick == 0) {
+            $(".select0").text("Đang chọn");
+            $(".select1").text("");
+            kick_roll = 0;
+        }
+        else {
+            $(".select1").text("Đang chọn");
+            $(".select0").text("");
+            kick_roll = 1;
+        }
+    }
+
+    function kickMe() {
+        var x = Math.floor((Math.random() * 100) + 1);
+        $('.value').text(x);
+        if (x > 50) {
+            $('.progress-bar').attr("class", "progress-bar bg-red");
+        }
+        else {
+            $('.progress-bar').attr("class", "progress-bar bg-blue-sky");
+        }
+        $('.progress-bar').attr("style", "width: " + x + "%;");
+    }
+
+    function Alert(type, text) {
+        var myStack = { "dir1": "down", "dir2": "right", "push": "top" };
+        var opts = {
+            title: "Over Here",
+            text: "Check me out. I'm in a different stack.",
+            stack: myStack,
+        };
+        switch (type) {
+            case 'error':
+                opts.title = "Oh No!";
+                opts.text = text == null ? "Thao tác thất bại!" : text;
+                opts.type = "danger";
+                opts.styling = 'bootstrap3';
+                opts.delay = 1000
+                break;
+            case 'info':
+                opts.title = "Breaking News";
+                opts.text = "Have you met Ted?";
+                opts.type = "info";
+                opts.styling = 'bootstrap3';
+                opts.delay = 1000
+                break;
+            case 'success':
+                opts.title = "tadaa!!";
+                opts.text = text == null ? "Thao tác thành công!" : text;
+                opts.type = "success";
+                opts.styling = 'bootstrap3';
+                opts.delay = 1000
+                break;
+        }
+        new PNotify(opts);
+    }
+</script>

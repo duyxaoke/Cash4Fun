@@ -1,0 +1,555 @@
+﻿
+@{
+    ViewBag.Title = "Chat - Cash4Fun";
+}
+
+<!-- jQuery -->
+<script src="~/Content/vendors/jquery/dist/jquery.min.js"></script>
+
+<script src="~/Content/chat/jquery.ui.core.js"></script>
+<script src="~/Content/chat/jquery.ui.widget.js"></script>
+<script src="~/Content/chat/jquery.ui.mouse.js"></script>
+<script src="~/Content/chat/jquery.ui.draggable.js"></script>
+<script src="~/Content/chat/jquery.ui.resizable.js"></script>
+<script src="~/Content/vendors/moment/min/moment.min.js"></script>
+
+<style>
+    @@import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+
+    *, *:before, *:after {
+        box-sizing: border-box;
+    }
+
+    ul {
+        list-style-type: none;
+    }
+
+
+    .people-list {
+        width: 30%;
+        float: left;
+    }
+
+        .people-list .search {
+            padding: 20px;
+        }
+
+        .people-list input {
+            border-radius: 3px;
+            border: none;
+            padding: 14px;
+            color: white;
+            background: #6A6C75;
+            width: 90%;
+            font-size: 14px;
+        }
+
+        .people-list .fa-search {
+            position: relative;
+            left: -25px;
+        }
+
+        .people-list ul {
+            padding: 20px;
+            height: 770px;
+        }
+
+            .people-list ul li {
+                padding-bottom: 20px;
+                border-bottom: 1px solid #e4e0e0;
+            }
+
+        .people-list img {
+            /*float: left;*/
+        }
+
+        .people-list .about {
+            float: left;
+            margin-top: 8px;
+        }
+
+        .people-list .about {
+            padding-left: 8px;
+        }
+
+        .people-list .status {
+            color: #92959E;
+        }
+
+    .chat {
+        width: 70%;
+        float: left;
+        background: #F2F5F8;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        color: #434651;
+    }
+
+        .chat .chat-header {
+            padding: 20px;
+            border-bottom: 2px solid white;
+        }
+
+            .chat .chat-header img {
+                float: left;
+            }
+
+            .chat .chat-header .chat-about {
+                float: left;
+                padding-left: 10px;
+                margin-top: 6px;
+            }
+
+            .chat .chat-header .chat-with {
+                font-weight: bold;
+                font-size: 16px;
+            }
+
+            .chat .chat-header .chat-num-messages {
+                color: #92959E;
+            }
+
+            .chat .chat-header .fa-star {
+                float: right;
+                color: #D8DADF;
+                font-size: 20px;
+                margin-top: 12px;
+            }
+
+        .chat .chat-history {
+            padding: 20px 10px 0px 0px;
+            border-bottom: 2px solid white;
+            overflow-y: scroll;
+            height: 575px;
+        }
+
+            .chat .chat-history .message-data {
+                margin-bottom: 15px;
+            }
+
+            .chat .chat-history .message-data-time {
+                color: #a8aab1;
+                padding-left: 6px;
+            }
+
+            .chat .chat-history .message {
+                color: #4b4f56;
+                padding: 10px 16px;
+                line-height: 26px;
+                font-size: 14px;
+                border-radius: 7px;
+                margin-bottom: 20px;
+                width: 100%;
+                position: relative;
+            }
+
+                .chat .chat-history .message:after {
+                    bottom: 100%;
+                    left: 7%;
+                    border: solid transparent;
+                    content: " ";
+                    height: 0;
+                    width: 0;
+                    position: absolute;
+                    pointer-events: none;
+                    border-bottom-color: #e4e0e0;
+                    border-width: 10px;
+                    margin-left: -10px;
+                }
+
+            .chat .chat-history .my-message {
+                background: #e4e0e0;
+            }
+
+            .chat .chat-history .other-message {
+                background: #94C2ED;
+            }
+
+                .chat .chat-history .other-message:after {
+                    border-bottom-color: #94C2ED;
+                    left: 93%;
+                }
+
+        .chat .chat-message {
+            padding: 30px;
+        }
+
+            .chat .chat-message input {
+                width: 90%;
+                border: 1;
+                padding: 10px 20px;
+                font: 14px/22px "Lato", Arial, sans-serif;
+                margin-bottom: 10px;
+                border-radius: 5px;
+                resize: none;
+            }
+
+            .chat .chat-message .fa-file-o, .chat .chat-message .fa-file-image-o {
+                font-size: 16px;
+                color: gray;
+                cursor: pointer;
+            }
+
+            .chat .chat-message button {
+                float: right;
+                color: #94C2ED;
+                font-size: 16px;
+                text-transform: uppercase;
+                border: none;
+                cursor: pointer;
+                font-weight: bold;
+                background: #F2F5F8;
+            }
+
+                .chat .chat-message button:hover {
+                    color: #75b1e8;
+                }
+
+    .online, .offline, .me {
+        margin-right: 3px;
+        font-size: 10px;
+    }
+
+    .online {
+        color: #86BB71;
+    }
+
+    .offline {
+        color: #E38968;
+    }
+
+    .me {
+        color: #94C2ED;
+    }
+
+    .align-left {
+        text-align: left;
+    }
+
+    .align-right {
+        text-align: right;
+    }
+
+    .float-right {
+        float: right;
+    }
+
+    .clearfix:after {
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: " ";
+        clear: both;
+        height: 0;
+    }
+</style>
+
+<script type="text/javascript">
+    moment.locale("vi");
+    $(function () {
+        clearInterval(refreshId);
+        setScreen(true);
+
+        // Declare a proxy to reference the hub.
+        var chatHub = $.connection.chatHub;
+        $.connection.hub.logging = true;
+
+        registerClientMethods(chatHub);
+
+        // Start Hub
+        $.connection.hub.start().done(function () {
+            registerEvents(chatHub)
+        });
+    });
+
+    // ------------------------------------------------------------------Variable ----------------------------------------------------------------------//
+    var loadMesgCount = 10;
+    var topPosition = 0;
+    var refreshId = null;
+
+    function scrollTop(ctrId) {
+        var height = $('#' + ctrId).find('#divMessage')[0].scrollHeight;
+        $('#' + ctrId).find('#divMessage').scrollTop(height);
+    }
+
+    // ------------------------------------------------------------------Start All Chat ----------------------------------------------------------------------//
+    function setScreen(isLogin) {
+        if (!isLogin) {
+            $("#divChat").hide();
+        }
+        else {
+            $("#divChat").show();
+        }
+    }
+
+    function registerEvents(chatHub) {
+        chatHub.server.connect();
+        $("#txtMessage").keypress(function (e) {
+            if (e.which == 13) {
+                $('#btnSendMsg').click();
+            }
+        });
+
+        $('#btnSendMsg').click(function () {
+            var msg = $("#txtMessage").val();
+            if (msg.length > 0) {
+                chatHub.server.sendMessageToAll(msg);
+                $("#txtMessage").val('');
+            }
+        });
+    }
+
+    function registerClientMethods(chatHub) {
+        // Calls when user successfully logged in
+        chatHub.client.onConnected = function (id, UserId, UserName, allUsers, messages) {
+            setScreen(true);
+
+            $('#hdId').val(id);
+            $('#hdUserId').val(UserId);
+            $('#spanUser').html(UserId);
+
+            // Add All Users
+            for (i = 0; i < allUsers.length; i++) {
+                AddUser(chatHub, allUsers[i].ConnectionId, allUsers[i].UserId, allUsers[i].UserName, allUsers[i].ImageRank, allUsers[i].TextColor);
+            }
+
+            // Add Existing Messages
+            for (i = 0; i < messages.length; i++) {
+                AddMessage(messages[i].UserId, messages[i].UserName, messages[i].Message, messages[i].CreateDate, messages[i].ImageRank, messages[i].TextColor);
+            }
+
+            $('.login').css('display', 'none');
+        }
+
+        // On New User Connected
+        chatHub.client.onNewUserConnected = function (id, userid, username, imageRank, textColor) {
+            var disc = $('<div class="disconnect">"' + username + '" đã tham gia phòng.</div>');
+
+            $(disc).hide();
+            $('#messageOnline').html(disc);
+            $(disc).fadeIn(200).delay(2000).fadeOut(200);
+
+            AddUser(chatHub, id, userid, username, imageRank, textColor);
+        }
+
+        // On User Disconnected
+        chatHub.client.onUserDisconnected = function (id, userId, userName) {
+            $('#' + id).remove();
+
+            var ctrId = 'private_' + id;
+            $('#' + ctrId).remove();
+
+            var disc = $('<div class="disconnect">"' + userName + '" đã rời phòng.</div>');
+
+            $(disc).hide();
+            $('#messageOnline').html(disc);
+            $(disc).fadeIn(200).delay(2000).fadeOut(200);
+        }
+
+        // On User Disconnected Existing
+        chatHub.client.onUserDisconnectedExisting = function (id, userId) {
+            $('#' + id).remove();
+            var ctrId = 'private_' + id;
+            $('#' + ctrId).remove();
+        }
+
+        chatHub.client.messageReceived = function (userId, userName, message, imageRank, textColor) {
+            AddMessage(userId, userName, message, new Date(), imageRank, textColor);
+        }
+
+        chatHub.client.sendPrivateMessage = function (windowId, fromUserName, message, userEmail, email, status, fromUserId) {
+            var ctrId = 'private_' + windowId;
+            if (status == 'Click') {
+                if ($('#' + ctrId).length == 0) {
+                    createPrivateChatWindow(chatHub, windowId, ctrId, fromUserName, userEmail, email);
+                    chatHub.server.getPrivateMessage(userEmail, email, loadMesgCount).done(function (msg) {
+                        for (i = 0; i < msg.length; i++) {
+                            $('#' + ctrId).find('#divMessage').append('<div class="message"><span class="userName">' + msg[i].userName + '</span>: ' + msg[i].message + '</div>');
+                            // set scrollbar
+                            scrollTop(ctrId);
+                        }
+                    });
+                }
+                else {
+                    $('#' + ctrId).find('#divMessage').append('<div class="message"><span class="userName">' + fromUserName + '</span>: ' + message + '</div>');
+                    // set scrollbar
+                    scrollTop(ctrId);
+                }
+            }
+
+            if (status == 'Type') {
+                if (fromUserId == windowId)
+                    $('#' + ctrId).find('#msgTypeingName').text('typing...');
+            }
+            else { $('#' + ctrId).find('#msgTypeingName').text(''); }
+        }
+    }
+
+    // Add User
+    function AddUser(chatHub, id, userid, userName, imageRank, textColor) {
+        if (imageRank != null) {
+            imageRank = '<img src="' + imageRank + '"/>';
+        }
+        else {
+            imageRank = "";
+        }
+
+        var userId = $('#hdUserId').val();
+        var code = "";
+
+        if (userId == userid && $('.loginUser').length == 0) {
+            code += '<li class="clearfix">                                                                                 ';
+            //code += '    <img src="/Content/images/NoImage.jpg" alt="avatar" /> ';
+            code += '    <div class="about">                                                                               ';
+            code += '        <div class="name loginUser"> <i class="fa fa-circle online"></i> ' + imageRank + ' <span style="color:' + textColor +';font-weight:bold">' + userName + '</span></div>                                                        ';
+            //code += '        <div class="status">                                                                          ';
+            //code += '            <i class="fa fa-circle online"></i> online                                                ';
+            //code += '                                </div>                                                                ';
+            code += '    </div>                                                                                            ';
+            code += '</li>                                                                                                 ';
+        }
+        else {
+            code += '<li class="clearfix" id="' + id + '">                                                                                 ';
+            //code += '    <img src="/Content/images/NoImage.jpg" alt="avatar" /> ';
+            code += '    <div class="about">                                                                               ';
+            code += '        <div class="name"> <i class="fa fa-circle online"></i> ' + imageRank + ' <span style="' + textColor + ';font-weight:bold">' + userName + '</span></div>                                                        ';
+            //code += '        <div class="status">                                                                          ';
+            //code += '            <i class="fa fa-circle online"></i> online                                                ';
+            //code += '                                </div>                                                                ';
+            code += '    </div>                                                                                            ';
+            code += '</li>                                                                                                 ';
+            //$(code).click(function () {
+            //    var id = $(this).attr('id');
+            //    if (userId != userid) {
+            //        OpenPrivateChatWindow(chatHub, id, name, userEmail, email);
+            //    }
+            //});
+        }
+
+        $("#divusers ul").append(code);
+    }
+    // Add Message
+    function AddMessage(userId, userName, message, createDate, imageRank, textColor) {
+        if (imageRank != null) {
+            imageRank = '<img src="' + imageRank + '" style=" width: 16px;height: 16px;"/>';
+        }
+        else {
+            imageRank = "";
+        }
+        var html = '';
+        html += '<li>';
+        html += '<div class="message-data">';
+        html += '    <span class="message-data-name userId" style="color:' + textColor + ';font-weight:bold"> ' + imageRank + userName + '</span>';
+        html += '    <span class="message-data-time">' + moment(createDate).fromNow() +'</span>';
+        html += '</div >';
+        debugger;
+        if (imageRank !== "") {
+            html += '<div class="message my-message" style="color: #c55252; font-weight: none;">';
+        }
+        else {
+            html += '<div class="message my-message" style="color: #000; font-weight: none;">';
+        }
+        html += message;
+        html += '</div>';
+        html += '</li>';
+
+        $('#divChatWindow ul').append(html);
+        var height = $('#divChatWindow')[0].scrollHeight;
+        $('#divChatWindow').scrollTop(height);
+    }
+</script>
+
+
+<div class="right_col" role="main">
+    <div style="margin-top:50px">
+
+
+
+
+
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <div class="text-center"><h3>Các biểu tượng trong phòng chat</h3></div>
+                        <hr />
+                        <div class="col-md-12">
+                            <div class="col-md-3">
+                                <img src="~/Content/images/rank/admin.png" /> <span style="color:#e4ba05;font-weight:bold">ADMIN</span>
+                            </div>
+                            <div class="col-md-3">
+                                <img src="~/Content/images/rank/hang1.png" /> xyz: TOP 1 tuần
+                            </div>
+                            <div class="col-md-3">
+                                <img src="~/Content/images/rank/hang2.png" /> xyz: TOP 2 tuần
+                            </div>
+                            <div class="col-md-3">
+                                <img src="~/Content/images/rank/hang3.png" /> xyz: TOP 3 tuần
+                            </div>
+                        </div>
+                        
+                        <div class="clearfix"></div>
+                        <hr />
+                        <div class="container clearfix">
+                            <div class="people-list" id="divusers" style=" height:810px;overflow: scroll;">
+                                <ul class="list">
+                                    @*<li class="clearfix">
+                                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="avatar" />
+                                        <div class="about">
+                                            <div class="name">sd</div>
+                                            <div class="status">
+                                                <i class="fa fa-circle online"></i> online
+                                            </div>
+                                        </div>
+                                    </li>*@
+
+                                </ul>
+                            </div>
+
+
+
+                            <div id="divChat" class="chat">
+                                <div class="chat-header clearfix">
+                                    <img src="~/Content/images/rank/logo.jpg" alt="avatar" />
+
+                                    <div class="chat-about">
+                                        <div class="chat-with">Funners Chat</div>
+                                        <div class="chat-num-messages">Tập hợp nhân tài cào phím</div>
+                                    </div>
+                                    <i class="fa fa-star"></i>
+                                </div> <!-- end chat-header -->
+
+                                <div class="chat-history" id="divChatWindow">
+                                    <ul>
+                                    </ul>
+
+                                </div> <!-- end chat-history -->
+
+                                <div class="chat-message clearfix">
+                                    <input type="text" name="message-to-send" id="txtMessage" placeholder="Nhập tin nhắn..." width="90%"/>
+                                    <button id="btnSendMsg" class="btn btn-primary" width="10%">Gửi</button>
+                                    @*<i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
+                                        <i class="fa fa-file-image-o"></i>*@
+                                   
+                                   
+                                    <input id="hdId" type="hidden" />
+                                    <input id="hdUserName" type="hidden" />
+                                    <input id="hdUserId" type="hidden" />
+
+                                </div> <!-- end chat-message -->
+                                <div id="messageOnline" style="height:15px;margin-bottom:15px" class="text-center">Bạn đã tham gia phòng chat.</div>
+                            </div> <!-- end chat -->
+
+                        </div> <!-- end container -->
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

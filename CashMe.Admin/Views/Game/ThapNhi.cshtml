@@ -1,0 +1,1497 @@
+﻿@using CashMe.Core.Data
+@model IEnumerable<Bet>
+@{
+    ViewBag.Title = "ThapNhi";
+}
+<!-- jQuery -->
+<script src="~/Content/vendors/jquery/dist/jquery.min.js"></script>
+<link href="~/Content/js/PNotify/pnotify.custom.min.css" rel="stylesheet" />
+<script src="~/Content/js/PNotify/pnotify.custom.min.js"></script>
+<link href="~/Content/css/animate.css" rel="stylesheet" />
+
+<style>
+    .modal {
+        z-index: 99999;
+    }
+    .progress {
+        background-color: #ffffff;
+        -webkit-box-shadow: none;
+    }
+    .progress-bar-info {
+        background-color: #2b3643;
+    }
+    .ul.verticle_bars li {
+        width: 10% !important;
+    }
+
+
+    element.style {
+    }
+
+    .dong1 {
+        border: #724613 1px solid;
+        height: 55px;
+        width: 490px;
+        margin: 7px 0 0 0px;
+        padding-left: 10px;
+        border-radius: 3px;
+        float: left;
+        background:#fff;
+
+    }
+
+    .dong2 {
+        border: #724613 1px solid;
+        margin: 7px 0 0 0px;
+        padding: 30px;
+        border-radius: 3px;
+        float: left;
+        background: #fff;
+        width: 95%;
+        /*opacity: 0.8;*/
+    }
+
+
+    .conbox1 {
+        float: left;
+        width: 90px;
+        margin: 1px 0 0 5px;
+        font-size: 11px;
+        font-weight: bold;
+        color: #2e1904;
+    }
+
+        .conbox1 input {
+            border: 1px solid #442505;
+            color: #573001;
+            width: 90px;
+            border-radius: 3px;
+            font-size: 11px;
+            padding: 0 2px 0 4px;
+            height: 25px;
+        }
+
+    .conthu_trai {
+        float: left;
+        position: relative;
+        width: 57px;
+        padding: 0;
+        margin: -1px 0 0 10px;
+    }
+
+    .tenthu_trai {
+        font-size: 11px;
+        position: absolute;
+        top: 5px;
+        right: -12px;
+        z-index: 50;
+    }
+
+    .gachngang {
+        float: left;
+        margin: 18px 13px 0 18px;
+    }
+
+    .tenthu_phai {
+        font-size: 11px;
+        position: absolute;
+        top: 5px;
+        left: -12px;
+        z-index: 50;
+    }
+
+    .but_dat {
+        float: right;
+        padding: 16px 10px 0 0;
+    }
+
+    /* General Setting */
+section.header--title{
+  /*margin: 150px 0;*/
+}
+
+/*  */
+
+/* Color */
+.color-primary{
+  color: #f2a447;
+}
+.color-secondary{
+  color: #d6d7dc;
+}
+.color-dark{
+  color: #1c1e1f;
+}
+
+
+/* font styling */
+
+.font-montserrat{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+
+.font-playfair{
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+}
+
+.uppercase{
+  text-transform: uppercase;
+  letter-spacing: .4em;
+  font-size: .9em;
+}
+
+/* header--title */
+.header--title .row{
+  position: relative;
+}
+.header--title h2:after{
+  position: absolute;
+
+  bottom : -28%;
+  left: 34%;
+  content: '326';
+  font-size: 160px;
+  font-family: "montserrat", sans-serif;
+  color: #ebebeb;
+  z-index: -1;
+}
+
+.header--title h2{
+  font-size: 42px;
+  letter-spacing: -.03em;
+}
+
+.header--title h5{
+
+}
+
+/*!---------- 36. SPACING ----------*/
+.mr0 {
+  margin-right: 0;
+}
+.mb0 {
+  margin-bottom: 0 !important;
+}
+.mb8 {
+  margin-bottom: 8px;
+}
+.mb16 {
+  margin-bottom: 16px;
+}
+.mb24 {
+  margin-bottom: 24px;
+}
+.mb30 {
+  margin-bottom: 30px;
+}
+.mb32 {
+  margin-bottom: 32px;
+}
+.mb40 {
+  margin-bottom: 40px;
+}
+.mb48 {
+  margin-bottom: 48px;
+}
+.mb56 {
+  margin-bottom: 56px;
+}
+.mb64 {
+  margin-bottom: 64px;
+}
+.mb72 {
+  margin-bottom: 72px;
+}
+.mb80 {
+  margin-bottom: 80px;
+}
+.mb88 {
+  margin-bottom: 88px;
+}
+.mb96 {
+  margin-bottom: 96px;
+}
+.mb104 {
+  margin-bottom: 104px;
+}
+.mb112 {
+  margin-bottom: 112px;
+}
+.mb120 {
+  margin-bottom: 120px;
+}
+.mb160 {
+  margin-bottom: 160px;
+}
+.mt0 {
+  margin-top: 0 !important;
+}
+.mt8 {
+  margin-top: 8px;
+}
+.mt16 {
+  margin-top: 16px;
+}
+.mt24 {
+  margin-top: 24px;
+}
+.mt32 {
+  margin-top: 32px;
+}
+.mt40 {
+  margin-top: 40px;
+}
+.mt48 {
+  margin-top: 48px;
+}
+.mt56 {
+  margin-top: 56px;
+}
+.mt64 {
+  margin-top: 64px;
+}
+.mt72 {
+  margin-top: 72px;
+}
+.mt80 {
+  margin-top: 80px;
+}
+.mt88 {
+  margin-top: 88px;
+}
+.mt96 {
+  margin-top: 96px;
+}
+.mt104 {
+  margin-top: 104px;
+}
+.mt112 {
+  margin-top: 112px;
+}
+.mt120 {
+  margin-top: 120px;
+}
+.mt160 {
+  margin-top: 160px;
+}
+.p32 {
+  padding: 0 32px;
+}
+.p24 {
+  padding: 24px;
+}
+.p0 {
+  padding: 0;
+}
+.pt0 {
+  padding-top: 0;
+}
+.pt8 {
+  padding-top: 8px;
+}
+.pt16 {
+  padding-top: 16px;
+}
+.pt24 {
+  padding-top: 24px;
+}
+.pt32 {
+  padding-top: 32px;
+}
+.pt40 {
+  padding-top: 40px;
+}
+.pt48 {
+  padding-top: 48px;
+}
+.pt64 {
+  padding-top: 64px;
+}
+.pt72 {
+  padding-top: 72px;
+}
+.pt80 {
+  padding-top: 80px;
+}
+.pt88 {
+  padding-top: 88px;
+}
+.pt96 {
+  padding-top: 96px;
+}
+.pt104 {
+  padding-top: 104px;
+}
+.pt112 {
+  padding-top: 112px;
+}
+.pt120 {
+  padding-top: 120px;
+}
+.pt160 {
+  padding-top: 160px;
+}
+.pt180 {
+  padding-top: 180px;
+}
+.pt240 {
+  padding-top: 240px;
+}
+.pb0 {
+  padding-bottom: 0;
+}
+.pb8 {
+  padding-bottom: 8px;
+}
+.pb16 {
+  padding-bottom: 16px;
+}
+.pb24 {
+  padding-bottom: 24px;
+}
+.pb32 {
+  padding-bottom: 32px;
+}
+.pb40 {
+  padding-bottom: 40px;
+}
+.pb48 {
+  padding-bottom: 48px;
+}
+.pb56 {
+  padding-bottom: 56px;
+}
+.pb64 {
+  padding-bottom: 64px;
+}
+.pb72 {
+  padding-bottom: 72px;
+}
+.pb80 {
+  padding-bottom: 80px;
+}
+.pb88 {
+  padding-bottom: 88px;
+}
+.pb96 {
+  padding-bottom: 96px;
+}
+.pb104 {
+  padding-bottom: 104px;
+}
+.pb112 {
+  padding-bottom: 112px;
+}
+.pb120 {
+  padding-bottom: 120px;
+}
+.pb160 {
+  padding-bottom: 160px;
+}
+.pb180 {
+  padding-bottom: 180px;
+}
+.pb240 {
+  padding-bottom: 240px;
+}
+@@media all and (max-width: 990px) {
+  .mb-s-0 {
+    margin-bottom: 0;
+  }
+  .mb-s-8 {
+    margin-bottom: 8px;
+  }
+  .mb-s-16 {
+    margin-bottom: 16px;
+  }
+  .mb-s-24 {
+    margin-bottom: 24px;
+  }
+  .mb-s-32 {
+    margin-bottom: 32px;
+  }
+  .mb-s-40 {
+    margin-bottom: 40px;
+  }
+  .mb-s-48 {
+    margin-bottom: 48px;
+  }
+  .mb-s-64 {
+    margin-bottom: 64px;
+  }
+  .mb-s-72 {
+    margin-bottom: 72px;
+  }
+  .mb-s-80 {
+    margin-bottom: 80px;
+  }
+  .mb-s-88 {
+    margin-bottom: 88px;
+  }
+  .mb-s-96 {
+    margin-bottom: 96px;
+  }
+  .mb-s-104 {
+    margin-bottom: 104px;
+  }
+  .mb-s-112 {
+    margin-bottom: 112px;
+  }
+  .mb-s-120 {
+    margin-bottom: 120px;
+  }
+}
+@@media all and (max-width: 990px) {
+  .mb-sm-0 {
+    margin-bottom: 0;
+  }
+  .mb-sm-8 {
+    margin-bottom: 8px;
+  }
+  .mb-sm-16 {
+    margin-bottom: 16px;
+  }
+  .mb-sm-24 {
+    margin-bottom: 24px;
+  }
+  .mb-sm-32 {
+    margin-bottom: 32px;
+  }
+  .mb-sm-40 {
+    margin-bottom: 40px;
+  }
+  .mb-sm-48 {
+    margin-bottom: 48px;
+  }
+  .mb-sm-64 {
+    margin-bottom: 64px;
+  }
+  .mb-sm-72 {
+    margin-bottom: 72px;
+  }
+  .mb-sm-80 {
+    margin-bottom: 80px;
+  }
+  .mb-sm-88 {
+    margin-bottom: 88px;
+  }
+  .mb-sm-96 {
+    margin-bottom: 96px;
+  }
+  .mb-sm-104 {
+    margin-bottom: 104px;
+  }
+  .mb-sm-112 {
+    margin-bottom: 112px;
+  }
+  .mb-sm-120 {
+    margin-bottom: 120px;
+  }
+  .mt-sm-0 {
+    margin-top: 0 !important;
+  }
+  .mt-sm-8 {
+    margin-top: 8px;
+  }
+  .mt-sm-16 {
+    margin-top: 16px;
+  }
+  .mt-sm-24 {
+    margin-top: 24px;
+  }
+  .mt-sm-32 {
+    margin-top: 32px;
+  }
+  .mt-sm-40 {
+    margin-top: 40px;
+  }
+  .mt-sm-48 {
+    margin-top: 48px;
+  }
+  .mt-sm-56 {
+    margin-top: 56px;
+  }
+  .mt-sm-64 {
+    margin-top: 64px;
+  }
+  .mt-sm-72 {
+    margin-top: 72px;
+  }
+  .mt-sm-80 {
+    margin-top: 80px;
+  }
+  .mt-sm-88 {
+    margin-top: 88px;
+  }
+  .mt-sm-96 {
+    margin-top: 96px;
+  }
+  .mt-sm-104 {
+    margin-top: 104px;
+  }
+  .mt-sm-112 {
+    margin-top: 112px;
+  }
+  .mt-sm-120 {
+    margin-top: 120px;
+  }
+  .p0-sm {
+    padding: 0;
+  }
+  .pt-sm-0 {
+    padding-top: 0;
+  }
+  .pt-sm-8 {
+    padding-top: 8px;
+  }
+  .pt-sm-16 {
+    padding-top: 16px;
+  }
+  .pt-sm-24 {
+    padding-top: 24px;
+  }
+  .pt-sm-32 {
+    padding-top: 32px;
+  }
+  .pt-sm-40 {
+    padding-top: 40px;
+  }
+  .pt-sm-48 {
+    padding-top: 48px;
+  }
+  .pt-sm-64 {
+    padding-top: 64px;
+  }
+  .pt-sm-72 {
+    padding-top: 72px;
+  }
+  .pt-sm-80 {
+    padding-top: 80px;
+  }
+  .pt-sm-88 {
+    padding-top: 88px;
+  }
+  .pt-sm-96 {
+    padding-top: 96px;
+  }
+  .pt-sm-104 {
+    padding-top: 104px;
+  }
+  .pt-sm-112 {
+    padding-top: 112px;
+  }
+  .pt-sm-120 {
+    padding-top: 120px;
+  }
+  .pt-sm-160 {
+    padding-top: 160px;
+  }
+  .pb-sm-0 {
+    padding-bottom: 0;
+  }
+  .pb-sm-8 {
+    padding-bottom: 8px;
+  }
+  .pb-sm-16 {
+    padding-bottom: 16px;
+  }
+  .pb-sm-24 {
+    padding-bottom: 24px;
+  }
+  .pb-sm-32 {
+    padding-bottom: 32px;
+  }
+  .pb-sm-40 {
+    padding-bottom: 40px;
+  }
+  .pb-sm-48 {
+    padding-bottom: 48px;
+  }
+  .pb-sm-64 {
+    padding-bottom: 64px;
+  }
+  .pb-sm-72 {
+    padding-bottom: 72px;
+  }
+  .pb-sm-80 {
+    padding-bottom: 80px;
+  }
+  .pb-sm-88 {
+    padding-bottom: 88px;
+  }
+  .pb-sm-96 {
+    padding-bottom: 96px;
+  }
+  .pb-sm-104 {
+    padding-bottom: 104px;
+  }
+  .pb-sm-112 {
+    padding-bottom: 112px;
+  }
+  .pb-sm-120 {
+    padding-bottom: 120px;
+  }
+}
+@@media all and (max-width: 767px) {
+  .mb-xs-0 {
+    margin-bottom: 0;
+  }
+  .mb-xs-8 {
+    margin-bottom: 8px;
+  }
+  .mb-xs-16 {
+    margin-bottom: 16px;
+  }
+  .mb-xs-24 {
+    margin-bottom: 24px;
+  }
+  .mb-xs-32 {
+    margin-bottom: 32px;
+  }
+  .mb-xs-40 {
+    margin-bottom: 40px;
+  }
+  .mb-xs-48 {
+    margin-bottom: 48px;
+  }
+  .mb-xs-64 {
+    margin-bottom: 64px;
+  }
+  .mb-xs-72 {
+    margin-bottom: 72px;
+  }
+  .mb-xs-80 {
+    margin-bottom: 80px;
+  }
+  .mb-xs-88 {
+    margin-bottom: 88px;
+  }
+  .mb-xs-96 {
+    margin-bottom: 96px;
+  }
+  .mb-xs-104 {
+    margin-bottom: 104px;
+  }
+  .mb-xs-112 {
+    margin-bottom: 112px;
+  }
+  .mb-xs-120 {
+    margin-bottom: 120px;
+  }
+  .mt-xs-0 {
+    margin-top: 0 !important;
+  }
+  .mt-xs-8 {
+    margin-top: 8px;
+  }
+  .mt-xs-16 {
+    margin-top: 16px;
+  }
+  .mt-xs-24 {
+    margin-top: 24px;
+  }
+  .mt-xs-32 {
+    margin-top: 32px;
+  }
+  .mt-xs-40 {
+    margin-top: 40px;
+  }
+  .mt-xs-48 {
+    margin-top: 48px;
+  }
+  .mt-xs-56 {
+    margin-top: 56px;
+  }
+  .mt-xs-64 {
+    margin-top: 64px;
+  }
+  .mt-xs-72 {
+    margin-top: 72px;
+  }
+  .mt-xs-80 {
+    margin-top: 80px;
+  }
+  .mt-xs-88 {
+    margin-top: 88px;
+  }
+  .mt-xs-96 {
+    margin-top: 96px;
+  }
+  .mt-xs-104 {
+    margin-top: 104px;
+  }
+  .mt-xs-112 {
+    margin-top: 112px;
+  }
+  .mt-xs-120 {
+    margin-top: 120px;
+  }
+  .p0-xs {
+    padding: 0;
+  }
+  .pt-xs-0 {
+    padding-top: 0;
+  }
+  .pt-xs-8 {
+    padding-top: 8px;
+  }
+  .pt-xs-16 {
+    padding-top: 16px;
+  }
+  .pt-xs-24 {
+    padding-top: 24px;
+  }
+  .pt-xs-32 {
+    padding-top: 32px;
+  }
+  .pt-xs-40 {
+    padding-top: 40px;
+  }
+  .pt-xs-48 {
+    padding-top: 48px;
+  }
+  .pt-xs-64 {
+    padding-top: 64px;
+  }
+  .pt-xs-72 {
+    padding-top: 72px;
+  }
+  .pt-xs-80 {
+    padding-top: 80px;
+  }
+  .pt-xs-88 {
+    padding-top: 88px;
+  }
+  .pt-xs-96 {
+    padding-top: 96px;
+  }
+  .pt-xs-104 {
+    padding-top: 104px;
+  }
+  .pt-xs-112 {
+    padding-top: 112px;
+  }
+  .pt-xs-120 {
+    padding-top: 120px;
+  }
+  .pt-xs-160 {
+    padding-top: 160px;
+  }
+  .pt-xs-180 {
+    padding-top: 180px;
+  }
+  .pt-xs-240 {
+    padding-top: 240px !important;
+  }
+  .pb-xs-0 {
+    padding-bottom: 0;
+  }
+  .pb-xs-8 {
+    padding-bottom: 8px;
+  }
+  .pb-xs-16 {
+    padding-bottom: 16px;
+  }
+  .pb-xs-24 {
+    padding-bottom: 24px;
+  }
+  .pb-xs-32 {
+    padding-bottom: 32px;
+  }
+  .pb-xs-40 {
+    padding-bottom: 40px;
+  }
+  .pb-xs-48 {
+    padding-bottom: 48px;
+  }
+  .pb-xs-64 {
+    padding-bottom: 64px;
+  }
+  .pb-xs-72 {
+    padding-bottom: 72px;
+  }
+  .pb-xs-80 {
+    padding-bottom: 80px;
+  }
+  .pb-xs-88 {
+    padding-bottom: 88px;
+  }
+  .pb-xs-96 {
+    padding-bottom: 96px;
+  }
+  .pb-xs-104 {
+    padding-bottom: 104px;
+  }
+  .pb-xs-112 {
+    padding-bottom: 112px;
+  }
+  .pb-xs-120 {
+    padding-bottom: 120px;
+  }
+  .pb-xs-180 {
+    padding-bottom: 180px;
+  }
+  .pb-xs-240 {
+    padding-bottom: 240px !important;
+  }
+}
+
+</style>
+
+
+<div class="right_col" role="main">
+    <div style="margin-top:50px">
+        <div class="" style="background:url('http://phatloc.vtcgame.vn/thap-nhi-tranh-tai/Content_v3/images/bg.jpg') fixed;">
+            <section class="header--title">
+                <div class="container">
+                    <div class="row text-center">
+                        <div class="col-sm-10 col-sm-offset-1">
+
+                            <h5 class="font-montserrat color-primary uppercase">Cash4Fun</h5>
+                            <h2 class="font-playfair color-dark mt8">ĐUA THÚ</h2>
+                        </div><!-- col-sm-1o col-sm-offsetot-1 -->
+                    </div><!-- row-->
+                </div><!-- container-->
+            </section>
+            <div class="col-md-12">
+                <ul class="verticle_bars list-inline">
+                    <li>
+                        <div class="progress vertical progress_wide bottom active">
+                            <div class="progress-bar  progress-bar-danger progress-bar-striped" role="progressbar" style="height:100%">
+                                <img class="imgTop1" src="~/Content/images/animals/chuot.png" />
+                                <img src="~/Content/images/animals/1.png" />
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="progress vertical progress_wide bottom active">
+                            <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" style="height:100%">
+                                <img class="imgTop2" src="~/Content/images/animals/trau.png" />
+                                <img src="~/Content/images/animals/2.png" />
+
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="progress vertical progress_wide bottom active">
+                            <div class="progress-bar  progress-bar-success progress-bar-striped" role="progressbar" style="height:100%">
+                                <img class="imgTop3" src="~/Content/images/animals/ho.png" />
+                                <img src="~/Content/images/animals/3.png" />
+
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="progress vertical progress_wide bottom active">
+                            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" style="height:100%">
+                                <img class="imgTop4" src="~/Content/images/animals/meo.png" />
+                                <img src="~/Content/images/animals/4.png" />
+
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="progress vertical progress_wide bottom active">
+                            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" style="height:100%">
+                                <img class="imgTop5" src="~/Content/images/animals/rong.png" />
+                                <img src="~/Content/images/animals/5.png" />
+
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="progress vertical progress_wide bottom active">
+                            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" style="height:100%">
+                                <img class="imgTop6" src="~/Content/images/animals/ran.png" />
+                                <img src="~/Content/images/animals/6.png" />
+
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="progress vertical progress_wide bottom active">
+                            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" style="height:100%">
+                                <img class="imgTop7" src="~/Content/images/animals/ngua.png" />
+                                <img src="~/Content/images/animals/7.png" />
+
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="progress vertical progress_wide bottom active">
+                            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" style="height:100%">
+                                <img class="imgTop8" src="~/Content/images/animals/de.png" />
+                                <img src="~/Content/images/animals/8.png" />
+
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="progress vertical progress_wide bottom active">
+                            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" style="height:100%">
+                                <img class="imgTop9" src="~/Content/images/animals/khi.png" />
+                                <img src="~/Content/images/animals/9.png" />
+
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="progress vertical progress_wide bottom active">
+                            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" style="height:100%">
+                                <img class="imgTop10" src="~/Content/images/animals/ga.png" />
+                                <img src="~/Content/images/animals/10.png" />
+
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="progress vertical progress_wide bottom active">
+                            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" style="height:100%">
+                                <img class="imgTop11" src="~/Content/images/animals/cho.png" />
+                                <img src="~/Content/images/animals/11.png" />
+
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="progress vertical progress_wide bottom active">
+                            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" style="height:100%">
+                                <img class="imgTop12" src="~/Content/images/animals/lon.png" />
+                                <img src="~/Content/images/animals/12.png" />
+
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="col-md-7">
+                <div class="dong1">
+                    <div class="conbox1 conboxtrai">
+                        <span>300 người chọn</span>
+                        <input type="number" placeholder="Coin cược" min="0">
+                    </div>
+                    <div class="conthu_trai trai">
+                        <img class="imgBet1" src="~/Content/images/animals/noimage.png" data-animal="0" />
+                        <div class="tenthu_trai">x1.8</div>
+                    </div>
+                    <div class="gachngang">
+                        <img src="~/Content/images/animals//vs_t.png">
+                    </div>
+                    <div class="conthu_trai phai">
+                        <img class="imgBet2" src="~/Content/images/animals/noimage.png" data-animal="0" />
+                        <div class="tenthu_phai">x1.8</div>
+                    </div>
+                    <div class="conbox1 conboxphai">
+                        <span>666 người chọn</span>
+                        <input type="number" placeholder="Coin cược" min="0">
+                    </div>
+                    <div class="but_dat" count-bet="1">
+                        <a href="javascript:;">
+                            <img src="~/Content/images/animals/btn_dongy.gif" />
+                        </a>
+                    </div>
+                </div>
+                <div class="dong1">
+                    <div class="conbox1 conboxtrai">
+                        <span>300 người chọn</span>
+                        <input type="number" placeholder="Coin cược" min="0">
+                    </div>
+                    <div class="conthu_trai trai">
+                        <img class="imgBet3" src="~/Content/images/animals/noimage.png" data-animal="0" />
+                        <div class="tenthu_trai">x1.8</div>
+                    </div>
+                    <div class="gachngang">
+                        <img src="~/Content/images/animals//vs_t.png">
+                    </div>
+                    <div class="conthu_trai phai">
+                        <img class="imgBet4" src="~/Content/images/animals/noimage.png" data-animal="0" />
+                        <div class="tenthu_phai">x1.8</div>
+                    </div>
+                    <div class="conbox1 conboxphai">
+                        <span>666 người chọn</span>
+                        <input type="number" placeholder="Coin cược" min="0">
+                    </div>
+                    <div class="but_dat" count-bet="2">
+                        <a href="javascript:;">
+                            <img src="~/Content/images/animals/btn_dongy.gif" />
+                        </a>
+                    </div>
+                </div>
+                <div class="dong1">
+                    <div class="conbox1 conboxtrai">
+                        <span>300 người chọn</span>
+                        <input type="number" placeholder="Coin cược" min="0">
+                    </div>
+                    <div class="conthu_trai trai">
+                        <img class="imgBet5" src="~/Content/images/animals/noimage.png" data-animal="0" />
+                        <div class="tenthu_trai">x1.8</div>
+                    </div>
+                    <div class="gachngang">
+                        <img src="~/Content/images/animals//vs_t.png">
+                    </div>
+                    <div class="conthu_trai phai">
+                        <img class="imgBet6" src="~/Content/images/animals/noimage.png" data-animal="0" />
+                        <div class="tenthu_phai">x1.8</div>
+                    </div>
+                    <div class="conbox1 conboxphai">
+                        <span>666 người chọn</span>
+                        <input type="number" placeholder="Coin cược" min="0">
+                    </div>
+                    <div class="but_dat" count-bet="3">
+                        <a href="javascript:;">
+                            <img src="~/Content/images/animals/btn_dongy.gif" />
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-5" style="margin-bottom:100px">
+                <div class="dong2">
+                    <ul class="list-unstyled user_data">
+                        <li>
+                            <i class="fa fa-usd us_info_icons"></i> Tổng coin: <strong><span class="text-success totalCoin">0</span></strong>
+                        </li>
+                        <li>
+                            <i class="fa fa-usd us_info_icons"></i> Tổng tiền: <strong><span class="text-success Amount">0</span></strong>
+                        </li>
+                        <li>
+                            <i class="fa fa-usd us_info_icons"></i> Tổng coin khả dụng: <strong><span class="text-success realCoin">0</span></strong>
+                        </li>
+
+                        <li>
+                            <i class="fa fa-bar-chart us_info_icons"></i> Tổng bet: <strong><span class="text-success totalBet">0</span></strong>
+                        </li>
+                    </ul>
+                    <hr />
+                    <div class="text-center" style="margin-top:15px">
+                        <div class="demnguoc" id="clockdiv">
+                            <h3>Lượt kế tiếp sắp bắt đầu: <span class="text-danger seconds">20s</span></h3>
+                        </div>
+
+                        <a href="javascript:getResults();">
+                            <img src="~/Content/images/animals/but_hoantat.png" />
+                        </a>
+                        <h5 class="text-desc">Nếu đã cược xong, Bấm hoàn tất để xem kết quả</h5>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="clearfix" ></div>
+            <div class="col-md-12" style="margin-top:30px">
+                <div class="text-center">
+                    <h2>LỊCH SỬ ĐẶT CƯỢC</h2>
+                </div>
+                <table class="table table-hover" id="tblResult">
+                    <thead>
+                        <tr>
+                            <th>Transaction</th>
+                            <th>Ngày</th>
+                            <th>Cặp đấu</th>
+                            <th>Chi tiết cược</th>
+                            <th>Kết quả</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td style=' vertical-align: middle;'>@item.Id</td>
+                                <td style=' vertical-align: middle;'>@item.CreateDate.ToString("dd/MM/yyyy HH:mm:ss")</td>
+                                <td><img src='/Content/images/animals/" + ConvertKey(item.Animal1) + ".png' /> - <img src='/Content/images/animals/" + ConvertKey(item.Animal2) + ".png' /></td>
+                                <td><img src='/Content/images/animals/" + ConvertKey(item.Animal1) + ".png' /> x @item.Coin1 - <img src='/Content/images/animals/" + ConvertKey(item.Animal2) + ".png' /> x @item.Coin2</td>
+                                @if (item.Change > 0)
+                                {
+                                <td style=' vertical-align: middle;'><span class='text-success'>@item.Change</span></td>
+                                }
+                                else
+                                {
+                                <td style=' vertical-align: middle;'>@item.Change</td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+
+
+
+
+            </div>
+
+            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="myModalResult">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">Kết quả</h4>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table table-hover" id="tblResultModal">
+                                <thead>
+                                    <tr>
+                                        <th>Ngày</th>
+                                        <th>Cặp đấu</th>
+                                        <th>Chi tiết cược</th>
+                                        <th>Kết quả</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="myModalAlert">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">Thông báo</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="content"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+
+
+<script>
+
+
+
+    $(document).ready(function () {
+        setTimeout(function () {
+            $("#menu_toggle").click();
+        },100);
+
+    });
+
+    getBets();
+    getInfoUser();
+
+
+    function getTimeRemaining(endtime) {
+        var t = Date.parse(endtime) - Date.parse(new Date());
+        var seconds = Math.floor((t / 1000) % 60);
+        var minutes = Math.floor((t / 1000 / 60) % 60);
+        var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+        return {
+            'total': t,
+            'hours': hours,
+            'minutes': minutes,
+            'seconds': seconds
+        };
+    }
+
+    function initializeClock(id, endtime) {
+        var clock = document.getElementById(id);
+        var secondsSpan = clock.querySelector('.seconds');
+
+        function updateClock() {
+            var t = getTimeRemaining(endtime);
+
+            secondsSpan.innerHTML = ('0' + t.seconds).slice(-2) + 's';
+
+            if (t.total <= 0) {
+                clearInterval(timeinterval);
+                getBets();
+                //location.reload();
+            }
+        }
+
+        updateClock();
+        var timeinterval = setInterval(updateClock, 1000);
+    }
+
+
+
+
+    $(".but_dat").click(function () {
+        if (confirm('Bạn chắc chắn muốn đặt cược? Khi đã đặt sẽ không thể hủy cược, cũng như sẽ không hoàn trả lại tiền cược.')) {
+            // Save it!
+            var countBet = $(this).attr("count-bet");
+            var coin1 = $(this).parent().find(".conboxtrai").find("input").val();
+            var coin2 = $(this).parent().find(".conboxphai").find("input").val();
+            var animal1 = $(this).parent().find(".trai").find("img").attr("data-animal");
+            var animal2 = $(this).parent().find(".phai").find("img").attr("data-animal");
+            if ((coin1 != "" && coin2 == "") || (coin1 == "" && coin2 != "")) {
+                jQuery.ajax({
+                    method: "GET",
+                    url: '/Game/AcceptBet',
+                    data: { animal1: animal1, animal2: animal2, coin1: coin1, coin2: coin2 },
+                    success: function (data, status, xhr) {
+                        if (data.Status == 0) {
+                            Alert('error', data.Message);
+                        }
+                        else {
+                            alert(data.Message);
+                            //Alert('success', data.Message);
+                            getInfoUser();
+                        }
+                    },
+                    error: function (xhr, status, err) {
+                        Alert('error', 'Có lỗi, vui lòng tải lại trang!');
+                    }
+                });
+            }
+            else {
+                //$(".content").html("Bạn nhập sai giá trị đặt cược.");
+                //$('#myModalAlert').modal({ backdrop: 'static', keyboard: false })  
+                alert('Bạn nhập sai giá trị đặt cược.');
+                return;
+            }
+        }
+    });
+
+    function sleep(milliseconds) {
+        var start = new Date().getTime();
+        for (var i = 0; i < 1e7; i++) {
+            if ((new Date().getTime() - start) > milliseconds) {
+                break;
+            }
+        }
+    }
+
+
+    function getResults() {
+        jQuery.ajax({
+            method: "GET",
+            url: '/Game/getResultRace',
+            success: function (data, status, xhr) {
+                if (data !== null) {
+                    var time = 1000;
+                    var time2 = 500;
+                    jQuery.each(data.lsTOP, function (i, item) {
+                        setTimeout(function () {
+                            $(".imgTop" + (i + 1)).removeClass('animated');
+                            $(".imgTop" + (i + 1)).removeClass('zoomInDown');
+                            $(".imgTop" + (i + 1)).addClass('animated zoomOutDown');
+
+                        }, time2)
+                        time2 += 500;
+
+                        setTimeout(function () {
+                            $(".imgTop" + (i + 1)).removeClass('animated');
+                            $(".imgTop" + (i + 1)).removeClass('zoomOutDown');
+                            $(".imgTop" + (i + 1)).addClass('animated zoomInDown');
+                            $(".imgTop" + (i + 1)).attr("src", "/Content/images/animals/" + data.lsTOP[i].Key + ".png");
+                        }, time)
+                        time += 500;
+
+                    })
+                    
+                   $(".totalCoin").html(data.TotalCoin);
+                   $(".Amount").html(data.Amount);
+                   $(".realCoin").html(data.RealCoin);
+                   $(".totalBet").html(data.TotalBet);
+                   getResultBet();
+                   //setTimeout(function () {
+                   //    //30s sau tao vong moi
+                   //    var deadLine = new Date();
+
+                   //    var now = new Date();
+                   //    deadLine.setSeconds(now.getSeconds() + 5);
+
+                   //    var countDownDate = deadLine.getTime();
+                   //    var distance = countDownDate - now.getTime();
+                   //    console.log(distance);
+                   //    var deadline = new Date(Date.parse(new Date()) + distance);
+                   //    initializeClock('clockdiv', deadline);
+                   //}, 8000)
+
+
+                }
+                else {
+                    Alert('error', 'Vui lòng thử lại.!');
+                }
+            },
+            error: function (xhr, status, err) {
+                Alert('error', 'Có lỗi, vui lòng thử lại!');
+
+            }
+        });
+    }
+    function getBets() {
+        jQuery.ajax({
+            method: "GET",
+            url: '/Game/RandomBet',
+            success: function (data, status, xhr) {
+                if (data !== null) {
+                    for (var i = 0; i < data.length; i++) {
+                        $(".imgBet" + (i + 1)).attr("src", "/Content/images/animals/" + data[i].Key + ".png");
+                        $(".imgBet" + (i + 1)).attr("data-animal", data[i].Id);
+
+                    }
+                }
+                else {
+                    Alert('error', 'Vui lòng thử lại.!');
+                }
+            },
+            error: function (xhr, status, err) {
+                Alert('error', 'Có lỗi, vui lòng tải lại trang!');
+            }
+        });
+    }
+    function getInfoUser() {
+        jQuery.ajax({
+            method: "GET",
+            url: '/Game/getInfoUser',
+            success: function (data, status, xhr) {
+                if (data.Status == 1) {
+                    $(".totalCoin").html(data.TotalCoin);
+                    $(".Amount").html(data.Amount);
+                    $(".realCoin").html(data.RealCoin);
+                    $(".totalBet").html(data.TotalBet);
+                }
+                else {
+                    Alert('error', 'Có lỗi, vui lòng tải lại trang!');
+                }
+            },
+            error: function (xhr, status, err) {
+                Alert('error', 'Có lỗi, vui lòng tải lại trang!');
+            }
+        });
+    }
+    function getResultBet() {
+        jQuery.ajax({
+            method: "GET",
+            url: '/Game/getResultBet',
+            success: function (data, status, xhr) {
+                if (data.length > 0) {
+                    var html = "";
+                    jQuery.each(data, function (i, item) {
+                        html += "<tr>";
+                        html += "<td style=' vertical-align: middle;'>" + ConvertDate(item.CreateDate) + "</td>";
+                        html += "<td><img src='/Content/images/animals/" + ConvertKey(item.Animal1) + ".png'/> - <img src='/Content/images/animals/" + ConvertKey(item.Animal2) + ".png'/></td>";
+                        html += "<td><img src='/Content/images/animals/" + ConvertKey(item.Animal1) + ".png'/> x " + item.Coin1 + " - <img src='/Content/images/animals/" + ConvertKey(item.Animal2) + ".png'/> x " + item.Coin2 +"</td>";
+                        if (item.Change > 0)
+                        {
+                            html += "<td style=' vertical-align: middle;'><span class='text-success'>+ " + item.Change + "</span></td>";
+                        }
+                        else {
+                            html += "<td style=' vertical-align: middle;'>" + item.Change + "</td>";
+                        }
+                        html += "</tr>";
+                    });
+                    $("#tblResultModal tbody").append(html);
+                    $('#myModalResult').modal({ backdrop: 'static', keyboard: false })  
+                }
+            },
+            error: function (xhr, status, err) {
+                Alert('error', 'Có lỗi, vui lòng tải lại trang!');
+            }
+        });
+    }
+    function ConvertDate(date)
+    {
+        date = new Date(parseInt(date.substr(6)));
+        return ('0' + date.getDate()).slice(-2) + '-'
+            + ('0' + (date.getMonth() + 1)).slice(-2) + '-'
+            + date.getFullYear() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+    }
+    function ConvertKey(key) {
+        switch (key)
+        {
+            case 1: return "chuot";
+            case 2: return "trau";
+            case 3: return "ho";
+            case 4: return "meo";
+            case 5: return "rong";
+            case 6: return "ran";
+            case 7: return "ngua";
+            case 8: return "de";
+            case 9: return "khi";
+            case 10: return "ga";
+            case 11: return "cho";
+            case 12: return "lon";
+        }
+    }
+    function checkNumber(value) {
+        if (isNaN(parseFloat(value)))
+            return true;
+        return false;
+    }
+
+    function Alert(type, text) {
+        var myStack = { "dir1": "down", "dir2": "right", "push": "top" };
+        var opts = {
+            title: "Over Here",
+            text: "Check me out. I'm in a different stack.",
+            stack: myStack,
+        };
+        switch (type) {
+            case 'error':
+                opts.title = "Oh No";
+                opts.text = text == null ? "Thao tác thất bại!" : text;
+                opts.type = "error";
+                break;
+            case 'info':
+                opts.title = "Breaking News";
+                opts.text = "Have you met Ted?";
+                opts.type = "info";
+                break;
+            case 'success':
+                opts.title = "Thông báo";
+                opts.text = text == null ? "Thao tác thành công!" : text;
+                opts.type = "success";
+                break;
+        }
+        new PNotify(opts);
+    };
+
+    function Confirm(callback) {
+
+        (new PNotify({
+            title: 'Chú ý',
+            text: 'Bạn chắc chắn muốn đặt cược? Khi đã đặt sẽ không thể hủy cược, cũng như sẽ không hoàn trả lại tiền cược.',
+            hide: false,
+            confirm: {
+                confirm: true
+            },
+            buttons: {
+                closer: false,
+                sticker: false
+            },
+            history: {
+                history: false
+            }
+        })).get().on('pnotify.confirm', function () {
+            if (callback && typeof callback === 'function') {
+                callback();
+                return;
+            };
+        }).on('pnotify.cancel', function () {
+        });
+    };
+
+
+</script>

@@ -1,0 +1,117 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{ 
+    var ListRole = ViewBag.ListRole as IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>;
+}
+<div class="panel">
+    <div class="panel-header header-line text-center">
+        <h3><strong>QUẢN LÝ THÀNH VIÊN </strong></h3>
+    </div>
+    <div class="panel-body bg-white">
+        <div class="col-md-12">
+            <table id="tbUsers" class="table table-hover">
+                <thead>
+                    <tr>
+                        @*<th><a href="#" role="button" onclick="javascript: getUserById(0);" data-toggle="modal" data-target="#detail_modal" class="btn btn-primary btn-embossed btn-sm"><i class="fa fa-plus"></i> Thêm</a></th>*@
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Phone number</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="detail_modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <form id="frmUsers">
+
+                <div class="modal-header bg-aero">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icons-office-52"></i></button>
+                    <h4 class="modal-title"><strong><span class="title_modal">CHI TIẾT</span></strong></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label">Username</label>
+                                <input type="text" readonly class="form-control" name="UserName">
+                                <input type="hidden" name="Id" value="0" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label">Email</label>
+                                <input type="text" class="form-control" name="Email" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label">Phone number</label>
+                                <input type="text" class="form-control" name="PhoneNumber" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label">Roles</label>
+                                @foreach (var role in ListRole)
+                                {
+                                    <label class="checkbox">
+                                        <input type="checkbox" class="checkRoles" name="checkRoles" value="@role.Id">@role.Name
+                                    </label>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label">Group</label>
+                                <select id="selectrole" class="form-control" data-search="true" name="RoleId">
+                                    @foreach (var item in ListRole)
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>*@
+                    @*<div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <p>
+                                    <strong>Trạng thái</strong>
+                                </p>
+                                <div class="input-group">
+                                    <div class="icheck-inline">
+                                        <label><input type="radio" name="Flag" value="0" data-radio="iradio_square-blue"> Ngưng hoạt động</label>
+                                        <label><input type="radio" name="Flag" value="1" data-radio="iradio_square-blue" checked> Hoạt động</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-embossed" data-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary btn-embossed">Lưu lại</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/admin/Scripts/UsersManager.js"></script>

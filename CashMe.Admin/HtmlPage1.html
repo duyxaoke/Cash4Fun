@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>RaiBlocks - In blockchain we trust!</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="In blockchain we trust!">
+    <link rel="icon" type="image/png" href="https://raiblockscommunity.net/media/logo-mini.png?v=1.81">
+
+    <link href="https://raiblockscommunity.net/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://raiblockscommunity.net/css/freelancer.css" rel="stylesheet">
+
+    <link href="https://raiblockscommunity.net/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+
+
+    <script src="https://raiblockscommunity.net/vendor/jquery/jquery-3.1.1.min.js"></script>
+    <script src="https://raiblockscommunity.net/vendor/jquery/jquery.cookie.min.js"></script>
+
+</head>
+<body id="page-top" class="index" style="">
+    <div class="row row-fix">
+        <div class="col-lg-12 text-center" style="padding-top: 5px">
+            <input id="ask_address" style="background-color: #506070; outline: none; color: Lime; width: 90%; max-width: 600px; text-align: center; font-size: 13px; height: 35px; margin: 0;">
+        </div>
+    </div>
+    <div class="row row-fix">
+        <div class="col-lg-12 text-center">
+            <div class="fvs-frame" id="fvs_frame">
+                <div class="frame-captcha">
+                    <input name="captcha_token" id="captcha_token" type="hidden">
+                    <img class="fvs-captcha gray" id="captcha_image" style="width: 220px; height: 80px; zoom: 6.16364; opacity: 1;" onerror="" src="/hcaptcha/api/image?hcaptcha_token=116.106.62.214&amp;hcaptcha_csrf=598c6b5ae88fd3.42831358&amp;x=0.9004019860135031">
+                    <input class="fvs-claim" name="captcha_code" id="captcha_code" maxlength="6">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row row-fix">
+        <div class="col-lg-12 text-center" style="padding-bottom: 5px">
+            <div style="font-family: arial; font-size: 11px;">
+                <span style="color: yellow; margin-right: 3px;" id="total">0000</span>
+                <span style="color: lime; margin-right: 3px;" id="success">0000</span>
+                <span style="color: orange; margin-right: 3px;">
+                    Pedding:
+                    <span style="color: white;" id="pedding">0000</span>
+                </span>
+                <span style="color: orange; margin-right: 3px;">
+                    Threshold:
+                    <span style="color: white;" id="threshold">0000</span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="row row-fix">
+        <div class="col-lg-12 text-center" style="padding-bottom: 5px">
+            <div style="font-family: arial; font-size: 11px;">
+                <span style="color: lime; margin-right: 3px;" id="time">00:03:16</span>
+            </div>
+        </div>
+    </div>
+    <style>
+        body {
+            background-color: #506070;
+        }
+
+        .grecaptcha-badge {
+            display: none;
+        }
+
+        .fvs-frame {
+            display: table;
+            margin: 0 auto;
+            padding: 5px;
+        }
+
+        .frame-captcha {
+            display: inline-block;
+        }
+
+        .fvs-captcha {
+            display: inline;
+        }
+
+        .fvs-claim {
+            display: block;
+            margin: 5px auto 0;
+            padding: 5px 0;
+            max-width: none !important;
+            background-color: #506070;
+            color: White;
+            text-align: center;
+            outline: none;
+        }
+
+        .gray {
+            -webkit-filter: grayscale(100%);
+            -moz-filter: grayscale(100%);
+            -ms-filter: grayscale(100%);
+            filter: grayscale(100%);
+            filter: gray;
+        }
+    </style>
+</body>
+</html>

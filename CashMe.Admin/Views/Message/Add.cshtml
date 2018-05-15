@@ -1,0 +1,114 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+}
+@{
+    var ListRole = ViewBag.ListRole as IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>;
+    var ListUser = ViewBag.ListUser as IEnumerable<CashMe.Shared.Models.ApplicationUser>;
+}
+<div class="panel">
+    <div class="panel-body bg-white">
+        <div class="col-md-12">
+            <!-- BEGIN PAGE CONTENT -->
+            <section class="app">
+                <aside class="aside-sm emails-list">
+                    <section>
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tabusers" data-toggle="tab">Theo Users</a></li>
+                            <li><a href="#tabroles" data-toggle="tab">Theo phân quyền</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade" id="tabroles">
+                                <div class="messages-list withScroll show-scroll" data-padding="200" data-height="window">
+                                    <div class="message-item media m-t-10">
+                                        <div class="media">
+                                            <div class="media-body">
+                                                <div class="icheck-list">
+                                                    <label>
+                                                        <input type="checkbox" id="checkAllRoles" data-checkbox="icheckbox_square"> Chọn tất cả
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @foreach (var item in ListRole)
+                                    {
+                                        <div class="message-item media">
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <div class="icheck-list">
+                                                        <label>
+                                                            <input type="checkbox" class="checkRoles" value="@item.Id" data-checkbox="icheckbox_square-blue"> @item.Name
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <div class="tab-pane fade in active" id="tabusers">
+                                <div class="messages-list withScroll show-scroll" data-padding="200" data-height="window">
+                                    <div class="message-item media m-t-10">
+                                        <div class="media">
+                                            <div class="media-body">
+                                                <div class="icheck-list">
+                                                    <label>
+                                                        <input type="checkbox" id="checkAllUsers" data-checkbox="icheckbox_square"> Chọn tất cả
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @foreach (var item in ListUser)
+                                    {
+                                        <div class="message-item media">
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <div class="icheck-list">
+                                                        <label>
+                                                            <input type="checkbox" class="checkUsers" value="@item.Id" data-checkbox="icheckbox_square-blue"> @item.UserName
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </aside>
+                <div class="email-details">
+                    <section>
+                        <div class="email-subject">
+                            <h2>GỬI TIN NHẮN HỆ THỐNG</h2>
+                        </div>
+                        <div class="email-details-inner">
+                            <form id="frmMessage">
+                                <div class="answers">
+                                    <div class="answer-subject">
+                                        <h2 class="answer-title"></h2>
+                                        <p>from <strong>me</strong> &bull; <span class="answer-date"></span></p>
+                                    </div>
+                                    <div class="answer-content"></div>
+                                </div>
+                                <div class="subject m-t-10">
+                                    <input name="FromUserId" class="form-control form-white" value="7f599448-6db3-4f81-8936-93d1498c4714" type="hidden">
+                                    <input class="form-control form-white" name="Title" type="text" placeholder="Tiêu đề">
+                                </div>
+                                <div class="write-answer">
+                                    <div class="summernote bg-white"></div>
+                                    <button id="save" class="btn btn-primary" type="submit">Gửi</button>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+                </div>
+            </section>
+            <!-- END PAGE CONTENT -->
+        </div>
+    </div>
+</div>
+
+

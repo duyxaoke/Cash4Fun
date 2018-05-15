@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "ViewWallet";
+}
+<script src="~/Content/vendors/jquery/dist/jquery.min.js"></script>
+<script src="~/Scripts/jquery.signalR-2.2.1.min.js"></script>
+<script src="~/signalr/hubs"></script>
+
+<div class="right_col" role="main">
+    <div style="margin-top:50px">
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <div class="table" id="messagesTable"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //real time socket
+        var reltime = $.connection.trackingHub;
+        // Create a function that the hub can call back to display messages.
+        reltime.client.message = function (status) {
+            alert('OK'); // có thay đỗi gọi thông báoc cho ác user hợp lệ
+        };
+        $.connection.hub.start();
+
+</script>

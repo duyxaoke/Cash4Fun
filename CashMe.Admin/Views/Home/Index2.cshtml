@@ -1,0 +1,229 @@
+﻿﻿@{ Layout = null;}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Kiếm tiền online | Cash4Fun</title>
+    <!--mobile device enable-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+    <!--favicon-->
+    <link rel="shortcut icon" href="~/Content/user/images/favicon.ico" type="image/x-icon" />
+    <!-- fontawesome css-->
+    <link rel="stylesheet" href="~/Content/user/css/font-awesome.min.css">
+    <!--boostrap css-->
+    <link rel="stylesheet" href="~/Content/user/css/bootstrap.min.css">
+    <!--owl-carousel css-->
+    <link rel="stylesheet" href="~/Content/user/css/owl.carousel.min.css">
+    <!--video css-->
+    <link rel="stylesheet" href="~/Content/user/css/jquery.mb.YTPlayer.min.css">
+    <!--venuboc css-->
+    <link rel="stylesheet" href="~/Content/user/css/venobox.css">
+    <!--main css-->
+    <link rel="stylesheet" href="~/Content/user/css/style.css">
+    <!--responsive css-->
+    <link rel="stylesheet" href="~/Content/user/css/responsive.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-7521562460239004",
+            enable_page_level_ads: true
+        });
+    </script>
+</head>
+<body data-spy="scroll" data-target=".navigation_area" data-offset="50">
+    <!--Start home page area-->
+    <div class="header_area" id="home">
+        <div id="particles-js"></div>
+        <div class="navigation_area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2 col-sm-2 col-lg-3">
+                        <!--site logo area-->
+                        <div class="site_logo">
+                            <a href="@Url.Action("Index","Home")">
+                                Cash4Fun
+                            </a>
+                        </div><!--End site logo area-->
+                    </div>
+                    <!--Start menu area-->
+                    <div class="col-md-10 col-sm-10 col-lg-9">
+                        <div class="mobile_menu"><i class="fa fa-bars" aria-hidden="true"></i></div>
+                        <div class="main_menu">
+                            <ul class="nav">
+                                <li><a href="@Url.Action("Index","Home")">TRANG CHỦ</a></li>
+                                <li><a target="_blank" href="https://www.facebook.com/Cash4Fun-Ki%E1%BA%BFm-ti%E1%BB%81n-th%E1%BA%ADt-vui-321531654952468/">FANPAGE FACEBOOK</a></li>
+                                <li><a target="_blank" href="https://www.facebook.com/groups/1560797263992885/?fref=nf">GROUP FACEBOOK</a></li>
+                            </ul>
+                        </div>
+                    </div><!--End menu area-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="heading_text txt_center">
+        <div class="text_animation">
+            <h4>Kiếm tiền Online</h4>
+            <h1> Cash4Fun</h1>
+        </div>
+    </div><!--End home page area -->
+    <!--Start about area-->
+    <section class="leader_info pb_100" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="section_title padd_bott">
+                    @*<h2>ĐĂNG KÝ ĐỂ NHẬN NGAY <span class="text-danger">@ViewBag.ImageForNewMember HÌNH ẢNH</span> VÀO TÀI KHOẢN. ÁP DỤNG TỪ 01/07/2017 ĐẾN 31/07/2017</h2>*@
+                    <h2>THANH TOÁN TỰ ĐỘNG: HẠN MỨC TỐI THIỂU 10.000Đ, KHI ĐẶT LỆNH RÚT TIỀN => HỆ THỐNG HIỂN THỊ NGAY MÃ THẺ, KHÔNG CẦN XÉT DUYỆT</h2>
+                    <h3></h3>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="leader_details">
+                        <h2><span class="text-danger">Giá coin theo thị trường: @(ViewBag.GiaCoin)đ / Hình ảnh</span>, đây là cách giúp bạn kiếm tiền nhanh nhất!</h2>
+                        <p><strong></strong></p>
+                        <p>- Công việc này bạn chỉ cần chọn hình ảnh theo yêu cầu hệ thống nên không đòi hỏi bất kì chuyên môn hay bằng cấp. Ai cũng có thể thực hiện công việc này</p>
+                        <p>- Chỉ cần 1 chiếc smartphone hoặc máy tính kết nối internet bạn có thể làm việc ở bất cứ đâu</p>
+                        <p>- Hệ thống thanh toán của chúng tôi hoàn toàn tự động, chỉ cần bạn làm đủ là có thể đổi thẻ cào hoặc rút về tài khoản</p>
+                        <br>
+                        <div class="text-center">
+                            <h4 class="text-danger">ĐĂNG NHẬP ĐỂ BẮT ĐẦU KIẾM TIỀN</h4>
+                            <br />
+                            <a href="@Url.Action("Login","Account")"><button class="btn btn-primary btn-lg">ĐĂNG NHẬP</button></a>
+                            <a href="@Url.Action("Register","Account")"><button class="btn btn-danger btn-lg">ĐĂNG KÝ</button></a>
+                        </div>
+                    </div>
+                </div>
+                @*<div class="col-md-4">
+                        <div class="top-customer-table">
+                            <table class="table">
+                                <tr>
+                                    <th colspan="2" class="text-center"><h4><strong>THƯỞNG ĐUA TOP THÁNG 7</strong></h4> </th>
+                                </tr>
+                                <tr>
+                                    <td><h4 class="text-success"><strong>TOP 1</strong></h4> </td>
+                                    <td align="right"><h4 class="text-warning"><strong>2.000.000đ</strong></h4></td>
+                                </tr>
+                                <tr>
+                                    <td><h4 class="text-primary"><strong>TOP 2</strong></h4> </td>
+                                    <td align="right"><h4 class="text-warning"><strong>1.500.000Đ</strong></h4></td>
+                                </tr>
+                                <tr>
+                                    <td><h4 class="text-danger"><strong>TOP 3</strong></h4> </td>
+                                    <td align="right"><h4 class="text-warning"><strong>1.300.000Đ</strong></h4></td>
+                                </tr>
+                                <tr>
+                                    <td><h4><strong>TOP 4</strong></h4> </td>
+                                    <td align="right"><h4 class="text-warning"><strong>1.000.000Đ</strong></h4></td>
+                                </tr>
+                                <tr>
+                                    <td><h4><strong>TOP 5</strong></h4> </td>
+                                    <td align="right"><h4 class="text-warning"><strong>800.000Đ</strong></h4></td>
+                                </tr>
+                                <tr>
+                                    <td><h4><strong>TOP 6 - TOP 10</strong></h4> </td>
+                                    <td align="right"><h4 class="text-warning"><strong>500.000Đ</strong></h4></td>
+                                </tr>
+
+                                <tr>
+                                    <td><h4><strong>TOP 11 - TOP 15</strong></h4> </td>
+                                    <td align="right"><h4 class="text-warning"><strong>300.000Đ</strong></h4></td>
+                                </tr>
+                                <tr>
+                                    <td><h4><strong>TOP 16 - TOP 20</strong></h4> </td>
+                                    <td align="right"><h4 class="text-warning"><strong>200.000Đ</strong></h4></td>
+                                </tr>
+                                <tr>
+                                    <td><h4><strong>TOP 21 - TOP 100</strong></h4> </td>
+                                    <td align="right"><h4 class="text-warning"><strong>100.000Đ</strong></h4></td>
+                                </tr>
+
+                            </table>
+                        </div>
+
+                    </div>*@
+            </div>
+        </div>
+    </section><!--End about area-->
+    <!--Start person quote-->
+    <!--
+    <div class="user_quote  background video-background player " data-property="{videoURL:'https://www.youtube.com/watch?v=EfTUpvxEbqc', containment:'self', showControls:false, ratio:'16/9', quality: 'default', opacity:.8, autoPlay:true, mute:true, startAt:0, realfullscreen: true}">
+        <div class="quote_overlay">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="quote_tile">
+                            <p> " Success is simple. Do what’s right, the right way, at the right time. " </p>
+                            <p class="quote">-Arnold H. Glasgow-</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    -->
+    <!--End person quote-->
+    <!--Start footer area-->
+    <footer class="footer_area footer_pb bg_color">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="widget_blok">
+                        <div class="widget_title txt_center">
+                            <p> &copy; 2017 All Rights Reserved.</p>
+                        </div>
+                        <div class="widget_social_icon txt_center">
+                            <div class="single_icon">
+                                <a href="#"> <i class="fa fa-pinterest-p" aria-hidden="true"></i> </a>
+                            </div>
+                            <div class="single_icon">
+                                <a href="#"> <i class="fa fa-twitter" aria-hidden="true"></i> </a>
+                            </div>
+                            <div class="single_icon">
+                                <a href="#"> <i class="fa fa-linkedin" aria-hidden="true"></i> </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer> <!--End footer area-->
+    <!--Scroll to top-->
+    <div class="scrolltp">
+        <i class="fa fa-chevron-up" aria-hidden="true"></i>
+    </div>
+
+    <!--main js-->
+    <script src="~/Content/user/js/jquery-1.12.4.min.js"></script>
+    <!--boostrap js-->
+    <script src="~/Content/user/js/bootstrap.min.js"></script>
+    <!-- owl-carousel js-->
+    <script src="~/Content/user/js/owl.carousel.min.js"></script>
+    <!--particle js-->
+    <script src="~/Content/user/js/particles.min.js"></script>
+    <!--venubox js-->
+    <script src="~/Content/user/js/venobox.min.js"></script>
+    <!--mixitup js-->
+    <script src="~/Content/user/js/mixitup.min.js"></script>
+    <!--video player js-->
+    <script src="~/Content/user/js/jquery.mb.YTPlayer.min.js"></script>
+    <!--app js-->
+    <script src="~/Content/user/js/app.js"></script>
+    <!-- custom js-->
+    <script src="~/Content/user/js/main.js"></script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-101728093-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+</body>
+</html>

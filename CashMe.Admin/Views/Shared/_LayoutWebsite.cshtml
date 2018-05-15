@@ -1,0 +1,319 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CashMe</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="~/Content/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/assets/css/normalize.css">
+    <link rel="stylesheet" href="~/Content/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/assets/css/jquery.countdown.css">
+    <link rel="stylesheet" href="~/Content/assets/css/customScrollbar.css">
+    <link rel="stylesheet" href="~/Content/assets/css/bootstrap-timepicker.min.css">
+    <link rel="stylesheet" href="~/Content/assets/css/fullcalendar.min.css">
+    <link rel="stylesheet" href="~/Content/assets/css/owl.carousel.css">
+    <link rel="stylesheet" href="~/Content/assets/css/owl.theme.css">
+    <link rel="stylesheet" href="~/Content/assets/css/jquery-ui.css">
+    <link rel="stylesheet" href="~/Content/assets/css/transitions.css">
+    <link rel="stylesheet" href="~/Content/assets/css/main.css">
+    <link rel="stylesheet" href="~/Content/assets/css/color.css">
+    <link rel="stylesheet" href="~/Content/assets/css/responsive.css">
+    <script src="~/Content/assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+
+</head>
+<body class="tg-home tg-login">
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <!--************************************
+            Preloader Start
+    *************************************-->
+    <!--<div class="preloader-outer">
+        <div class="pin"></div>
+        <div class="pulse"></div>
+    </div>-->
+    <!--************************************
+            Preloader End
+    *************************************-->
+    <div id="tg-wrapper" class="tg-wrapper tg-haslayout">
+        @Html.Action("Header", "Menu")
+        @RenderBody()
+        @Html.Action("Footer", "Menu")
+    </div>
+    <!--************************************
+                Light Box Start
+    *************************************-->
+    <div class="modal tg-modal tg-appointmentlightbox fade" id="tg-appointmentlightbox" tabindex="-1" role="dialog">
+        <div class="modal-dialog tg-modaldialog">
+            <div class="modal-content tg-modalcontent">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                <h2>Book Your Appointment!</h2>
+                <form class="tg-formbookappointment">
+                    <ul class="tg-formprogressbar">
+                        <li class="tg-active"><span>Request Appointment</span></li>
+                        <li><span>Verify Your Password</span></li>
+                        <li><span>Verify Code</span></li>
+                        <li><span>Complete</span></li>
+                    </ul>
+                    <fieldset class="tg-formstepone tg-current">
+                        <h3>What Would You Like To See The Doctor For?</h3>
+                        <div class="row tg-rowmargin">
+                            <div class="col-sm-4 col-xs-12 tg-columnpadding">
+                                <div class="form-group">
+                                    <div class="tg-patienttype">
+                                        <strong>Patient is:*</strong>
+                                        <span class="tg-radio">
+                                            <input type="radio" id="myself" name="myself" value="Myself">
+                                            <label for="myself">Myself</label>
+                                        </span>
+                                        <span class="tg-radio">
+                                            <input type="radio" id="someoneelse" name="someoneelse" value="Someone Else">
+                                            <label for="someoneelse">Someone Else</label>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-xs-12 tg-columnpadding">
+                                <div class="form-group">
+                                    <input type="text" name="text" class="form-control" placeholder="His/Her Name">
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-xs-12 tg-columnpadding">
+                                <div class="form-group">
+                                    <div class="tg-select">
+                                        <select>
+                                            <option value="">His/Her Relation</option>
+                                            <option value="">His/Her Relation</option>
+                                            <option value="">His/Her Relation</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-xs-12 tg-columnpadding">
+                                <div class="form-group">
+                                    <div class="tg-select">
+                                        <select>
+                                            <option value="">Where to visit:*</option>
+                                            <option value="">Where to visit:*</option>
+                                            <option value="">Where to visit:*</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-xs-12 tg-columnpadding">
+                                <div class="form-group">
+                                    <div class="tg-select">
+                                        <select>
+                                            <option value="">Appointment Type:*</option>
+                                            <option value="">Appointment Type:*</option>
+                                            <option value="">Appointment Type:*</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-xs-12 tg-columnpadding">
+                                <div class="form-group">
+                                    <div class="tg-select">
+                                        <select>
+                                            <option value="">Reason for visit:*</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-xs-12 tg-columnpadding">
+                                <div class="form-group">
+                                    <textarea class="form-control" placeholder="Comments:"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-xs-12 tg-columnpadding">
+                                <div class="tg-timeslothead">
+                                    <h3>Select Best Time To See The Doctor</h3>
+                                    <span class="tg-checkbox">
+                                        <input type="checkbox" id="firstavailableslot" name="firstavailableslot" value="">
+                                        <label for="firstavailableslot">Appoint First Available Time</label>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-xs-12 tg-columnpadding">
+                                <div class="tg-dateandtimeslots">
+                                    <div class="tg-datebox">
+                                        <time datetime="2011-10-10">June 27, Wednesday</time>
+                                        <span>11 Available</span>
+                                        <i class="fa fa-calendar-check-o"></i>
+                                    </div>
+                                    <div class="tg-timeslots">
+                                        <span class="tg-radio">
+                                            <input type="radio" id="firstavailableslot1" name="firstavailableslot" value="09:00" disabled>
+                                            <label for="firstavailableslot1">09:00</label>
+                                        </span>
+                                        <span class="tg-radio">
+                                            <input type="radio" id="firstavailableslot2" name="firstavailableslot" value="09:30" disabled>
+                                            <label for="firstavailableslot2">09:30</label>
+                                        </span>
+                                        <span class="tg-radio">
+                                            <input type="radio" id="firstavailableslot3" name="firstavailableslot" value="10:00" disabled>
+                                            <label for="firstavailableslot3">10:00</label>
+                                        </span>
+                                        <span class="tg-radio">
+                                            <input type="radio" id="firstavailableslot4" name="firstavailableslot" value="10:30" disabled>
+                                            <label for="firstavailableslot4">10:30</label>
+                                        </span>
+                                        <span class="tg-radio">
+                                            <input type="radio" id="firstavailableslot5" name="firstavailableslot" value="11:00">
+                                            <label for="firstavailableslot5">11:00</label>
+                                        </span>
+                                        <span class="tg-radio">
+                                            <input type="radio" id="firstavailableslot6" name="firstavailableslot" value="11:30">
+                                            <label for="firstavailableslot6">11:30</label>
+                                        </span>
+                                        <span class="tg-radio">
+                                            <input type="radio" id="firstavailableslot7" name="firstavailableslot" value="12:00">
+                                            <label for="firstavailableslot7">12:00</label>
+                                        </span>
+                                        <span class="tg-radio">
+                                            <input type="radio" id="firstavailableslot8" name="firstavailableslot" value="12:30">
+                                            <label for="firstavailableslot8">12:30</label>
+                                        </span>
+                                        <span class="tg-radio">
+                                            <input type="radio" id="firstavailableslot9" name="firstavailableslot" value="01:00">
+                                            <label for="firstavailableslot9">01:00</label>
+                                        </span>
+                                        <span class="tg-radio">
+                                            <input type="radio" id="firstavailableslot10" name="firstavailableslot" value="01:30">
+                                            <label for="firstavailableslot10">01:30</label>
+                                        </span>
+                                        <span class="tg-radio">
+                                            <input type="radio" id="firstavailableslot11" name="firstavailableslot" value="02:00">
+                                            <label for="firstavailableslot11">02:00</label>
+                                        </span>
+                                        <span class="tg-radio">
+                                            <input type="radio" id="firstavailableslot12" name="firstavailableslot" value="02:30">
+                                            <label for="firstavailableslot12">02:30</label>
+                                        </span>
+                                        <span class="tg-radio">
+                                            <input type="radio" id="firstavailableslot13" name="firstavailableslot" value="03:00">
+                                            <label for="firstavailableslot13">03:00</label>
+                                        </span>
+                                        <span class="tg-radio">
+                                            <input type="radio" id="firstavailableslot14" name="firstavailableslot" value="03:30">
+                                            <label for="firstavailableslot14">03:30</label>
+                                        </span>
+                                        <span class="tg-radio">
+                                            <input type="radio" id="firstavailableslot15" name="firstavailableslot" value="04:00">
+                                            <label for="firstavailableslot15">04:00</label>
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tg-btnbox">
+                            <button type="button" class="tg-btn tg-btnnext">Next Step</button>
+                        </div>
+                    </fieldset>
+                    <fieldset class="tg-formsteptwo">
+                        <h3>Verify Is That You?</h3>
+                        <div class="row tg-rowmargin">
+                            <div class="col-sm-6 tg-columnpadding">
+                                <div class="form-group">
+                                    <input type="password" name="password" class="form-control" placeholder="Password*">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 tg-columnpadding">
+                                <div class="form-group">
+                                    <input type="password" name="retypepassword" class="form-control" placeholder="Retype Password*">
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-xs-12">
+                                <span class="tg-checkbox">
+                                    <input type="checkbox" id="remember" name="remember" value="remember">
+                                    <label for="remember">Trust This Computer For Next Time</label>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="tg-btnbox">
+                            <button type="button" class="tg-btn tg-btnnext">Next Step</button>
+                            <button type="button" class="tg-btn tg-btnprevious">previous Step</button>
+                        </div>
+                    </fieldset>
+                    <fieldset class="tg-formstepthree">
+                        <h3>Enter Authentication Code</h3>
+                        <div class="row">
+                            <div class="col-sm-12 col-xs-12">
+                                <div class="tg-description">
+                                    <p>Consectetur adipisicing elit sed do eiusmod tempor code sent to <a href="index.html#">yourmail@domain.com</a> incididunt ut labore et dolore magna aliqua enim adminim ayiam quis nostrud exercitation commodo.</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-xs-12">
+                                <input type="text" name="code" class="form-control" placeholder="Enter Authentication Code Here">
+                            </div>
+                        </div>
+                        <div class="tg-btnbox">
+                            <button type="button" class="tg-btn tg-btnnext">Next Step</button>
+                            <button type="button" class="tg-btn tg-btnprevious">previous Step</button>
+                        </div>
+                    </fieldset>
+                    <fieldset class="tg-formstepfour">
+                        <h3>Appointment Confirmed</h3>
+                        <div class="tg-description">
+                            <p>Consectetur adipisicing elit sent to <a href="index.html#">yourmail@domain.com</a> and your appointment ID is <a href="index.html#">2124539</a> incididunt ut labore et dolore magna aliqua enim adminim ayiam quis nostrud exercitation commodo.</p>
+                        </div>
+                        <div class="tg-regardbox">
+                            <span>Regard</span>
+                            <strong class="tg-logo"><a href="index.html#"><img src="~/Content/assets/images/logos.png" alt="image description"></a></strong>
+                            <ul class="tg-contactdetail">
+                                <li>
+                                    <i class="fa fa-phone"></i>
+                                    <em>+4 212 245155 - 6</em>
+                                </li>
+                                <li>
+                                    <i class="fa fa-envelope-o"></i>
+                                    <a href="mailto:query@domain.com">query@domain.com</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-laptop"></i>
+                                    <a href="http://exprostudio.com/html/medlink/www.mediurl.com">www.mediurl.com</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--************************************
+                Light Box End
+    *************************************-->
+    <script src="~/Content/assets/js/vendor/jquery-library.js"></script>
+    <script src="~/Content/assets/js/vendor/bootstrap.min.js"></script>
+    <script src="~/Content/assets/js/mapclustering/data.json"></script>
+    <script src="https://maps.google.com/maps/api/js?key=AIzaSyCR-KEWAVCn52mSdeVeTqZjtqbmVJyfSus&language=en"></script>
+
+    <script src="~/Content/assets/js/mapclustering/markerclusterer.min.js"></script>
+    <script src="~/Content/assets/js/mapclustering/infobox.js"></script>
+    <script src="~/Content/assets/js/bootstrap-timepicker.min.js"></script>
+    <script src="~/Content/assets/js/customScrollbar.min.js"></script>
+    <script src="~/Content/assets/js/mapclustering/map.js"></script>
+    <script src="~/Content/assets/js/jquery.countdown.js"></script>
+    <script src="~/Content/assets/js/owl.carousel.min.js"></script>
+    <script src="~/Content/assets/js/isotope.pkgd.js"></script>
+    <script src="~/Content/assets/js/packery-mode.js"></script>
+    <script src="~/Content/assets/js/svg-injector.js"></script>
+    <script src="~/Content/assets/js/moment.min.js"></script>
+    <script src="~/Content/assets/js/fullcalendar.min.js"></script>
+    <script src="~/Content/assets/js/jquery-ui.js"></script>
+    <script src="~/Content/assets/js/collapse.js"></script>
+    <script src="~/Content/assets/js/parallax.js"></script>
+    <script src="~/Content/assets/js/readmore.js"></script>
+    <script src="~/Content/assets/js/countTo.js"></script>
+    <script src="~/Content/assets/js/loader.js"></script>
+    <script src="~/Content/assets/js/appear.js"></script>
+    <script src="~/Content/assets/js/gmap3.js"></script>
+    <script src="~/Content/assets/js/main.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

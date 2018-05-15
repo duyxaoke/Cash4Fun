@@ -1,0 +1,61 @@
+﻿@using Microsoft.AspNet.Identity
+@using CashMe.Shared.Common
+@model CashMe.Shared.Models.RegisterViewModel
+@{ 
+    var MainView = ViewBag.MainView as CashMe.Service.Models.MainViewModel;
+}
+<style>
+    .label {
+        font-size: 100%;
+        font-weight: normal;
+    }
+</style>
+<div class="top_nav">
+    <div class="nav_menu">
+        <nav>
+            <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+            </div>
+
+            <ul class="nav navbar-nav navbar-right">
+                @if (Request.IsAuthenticated)
+                {
+                    <li class="">
+                        <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            @*<img src="@Model.Avatar" alt="">*@
+                            <span class="top_menu_user_name">
+                                @Model.UserName
+                            </span>
+                            <span class="fa fa-angle-down"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-usermenu pull-right profile-dropdown">
+                            <li class="top-menu-border-top"><a href="#"><i class="fa fa-users"></i>
+                                 @(Model.Email.Substring(0, 3) + "***" + Model.Email.Substring(5))
+                                 </a></li>
+                            <li class="top-menu-border-top"><a href="@Url.Action("ChangePassword","Manage")"><i class="fa fa-users"></i>Đôi mật khẩu</a></li>
+                            <li class="top-menu-border-top"><a href="@Url.Action("LogOff","Account")"><i class="fa fa-sign-out"></i>Đăng xuất</a></li>
+                        </ul>
+                    </li>
+                }
+
+
+                <li role="presentation">
+                    <a href="javascript:;" >
+                        <span class="label label-success">@MainView.UserOnline người đang online</span>
+
+                    </a>
+
+                </li>
+                <li role="presentation">
+                    <a href="javascript:;">
+                        <span class="label label-success">@MainView.TotalClaim claim đã làm hôm nay</span>
+
+                    </a>
+
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+</div>
+

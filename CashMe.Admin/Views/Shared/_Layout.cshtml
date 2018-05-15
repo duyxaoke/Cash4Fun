@@ -1,0 +1,154 @@
+﻿@using Microsoft.AspNet.Identity
+@using CashMe.Shared.Common
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>@ViewBag.Title</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/icon" href="~/Content/images/favicon.ico" />
+    <!-- Bootstrap -->
+    <link href="~/Content/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="~/Content/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="~/Content/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="~/Content/vendors/animate.css/animate.min.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="~/Content/css/custom.min.css" rel="stylesheet">
+    <!-- Datatables -->
+    <link href="~/Content//vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content//vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content//vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content//vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content//vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+    <!-- bootstrap-progressbar -->
+    <link href="~/Content//vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- PNotify -->
+    <link href="~/Content/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+    <link href="~/Content/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+    <link href="~/Content/vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
+
+    <!--KHUNG CHAT-->
+    <link href="~/Content/chat/style.css" rel="stylesheet" />
+
+    <script src='https://www.google.com/recaptcha/api.js' async defer></script>
+
+</head>
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            @Html.Action("Sidebar", "Menu")
+            <!-- top navigation -->
+            @Html.Action("Header", "Menu")
+            <!-- /top navigation -->
+            <!-- page content -->
+            @RenderBody()
+            <!-- /page content -->
+            <!-- footer content -->
+            @Html.Action("Footer", "Menu")
+            <!-- /footer content -->
+            @*<div class="msg_box" style="right:5px">
+                <div class="msg_head">
+                    Chat
+                    <div class="close">x</div>
+                </div>
+                <div class="msg_wrap">
+                    <div class="msg_body">
+                        <div class="msg_a">This is from A	</div>
+                        <div class="msg_b">This is from B, and its amazingly kool nah... i know it even i liked it :)</div>
+                        <div class="msg_a">Wow, Thats great to hear from you man </div>
+                        <div class="msg_push"></div>
+                    </div>
+                    <div class="msg_footer"><textarea class="msg_input" rows="4"></textarea></div>
+                </div>
+            </div>*@
+
+        </div>
+    </div>
+    <!-- jQuery -->
+    <script src="~/Content/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/Content/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/Content/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="~/Content/vendors/nprogress/nprogress.js"></script>
+    <!-- jQuery Smart Wizard -->
+    <script src="~/Content/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
+    <!-- twitter-bootstrap-wizard-master -->
+    <script src="~/Content/vendors/twitter-bootstrap-wizard-master/jquery.bootstrap.wizard.js"></script>
+    <script src="~/Content/vendors/twitter-bootstrap-wizard-master/prettify.js"></script>
+    <!-- Datatables -->
+    <script src="~/Content/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="~/Content/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/Content/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="~/Content/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="~/Content/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/Content/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="~/Content/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="~/Content/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="~/Content/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/Content/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="~/Content/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="~/Content/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- PNotify -->
+    <script src="~/Content/vendors/pnotify/dist/pnotify.js"></script>
+    <script src="~/Content/vendors/pnotify/dist/pnotify.buttons.js"></script>
+    <script src="~/Content/vendors/pnotify/dist/pnotify.nonblock.js"></script>
+    <!--KHUNG CHAT-->
+    @*<script src="~/Content/chat/script.js"></script>*@
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#rootwizard').bootstrapWizard({
+                onTabShow: function (tab, navigation, index) {
+                    var $total = navigation.find('li').length;
+                    var $current = index + 1;
+                    var $percent = ($current / $total) * 100;
+                    $('#rootwizard .progress-bar').css({ width: $percent + '%' });
+                }
+            });
+            $('#rootwizard .finish').click(function () {
+                alert('Finished!, Starting over!');
+                $('#rootwizard').find("a[href*='tab1']").trigger('click');
+            });
+        });
+    </script>
+
+
+    <!-- Custom Theme Scripts -->
+    <script src="~/Content/js/custom.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.1.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Content/Scripts/CryptoJS.js"></script>
+    <script src="~/Content/Scripts/ToolFunction.js"></script>
+    @*<script src="~/Content/admin/Scripts/MessageScript.js"></script>*@
+
+    <!-- END PAGE SCRIPTS -->
+    <script>
+            @functions{
+                public string GetAntiForgeryToken()
+                {
+                    string cookieToken, formToken;
+                    AntiForgery.GetTokens(null, out cookieToken, out formToken);
+                    return cookieToken + "," + formToken;
+                }
+            }
+    </script>
+    <input type="hidden" id="forgeryToken" value="@GetAntiForgeryToken()" />
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+
+

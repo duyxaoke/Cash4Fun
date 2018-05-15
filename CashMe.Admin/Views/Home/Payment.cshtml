@@ -1,0 +1,314 @@
+﻿@using CaptchaMvc.HtmlHelpers
+@{
+    ViewBag.Title = "Thanh toán - Cash4Fun";
+}
+
+<div class="right_col" role="main">
+    <div style="margin-top:50px">
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    
+                    <h3>Gửi yêu cầu thanh toán</h3>
+                    <p><span class="text-danger"> Tổng tiền kiếm được</span> : @ViewBag.RealValue VND</p>
+                    <p><span class="text-danger"> Tổng tiền khả dụng</span> : @ViewBag.RealValue VND</p>
+                    <h5 class="text-danger"><strong>Kiểm tra các thông tin nhập thật chính xác, chúng tôi không chịu trách nhiệm nếu bạn nhập sai thông tin</strong></h5>
+                    <br />
+                    @if (ViewBag.Error != null)
+                    {
+                    <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        @ViewBag.Error
+                    </div>
+                    }
+                    @if (ViewBag.Success != null)
+                    {
+                    <div class="alert alert-success alert-dismissible fade in" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        @Html.Raw(ViewBag.Success)
+                    </div>
+                    }
+                    <div id="rootwizard" class="twitter-wizard">
+                        <div class="navbar">
+                            <div class="navbar-inner">
+                                <div class="container">
+                                    <ul>
+                                        @*<li><a href="#tab1" data-toggle="tab">Thẻ cào</a></li>
+                                        <li><a href="#tab2" data-toggle="tab">Ví Momo</a></li>*@
+                                        <li><a href="#tab3" data-toggle="tab">ATM</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-content">
+                            <!--
+                            <div class="tab-pane form-horizontal" id="tab1">
+                                <h4>Bảo trì thanh toán thẻ cào</h4>
+                                
+                                @using (Html.BeginForm("PaymentCard", "Home", FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="username">
+                                            Loại thẻ <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <select class="form-control" name="card_type" id="card_type">
+                                                <option value="VTT">Viettel</option>
+                                                <option value="VNP">Vina</option>
+                                                <option value="VMS">Mobifone</option>
+                                                <option value="VTC">Vcoin</option>
+                                                <option value="Gate">Gate</option>
+                                                <option value="Garena">Garena</option>
+                                                <option value="Zing">Zing</option>
+                                                <option value="OnCash">OnCash</option>
+                                                <option value="Megacard">Megacard</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">
+                                                Mệnh giá <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <select class="form-control" name="card_amount" id="card_amount">
+                                                    <option value="10000">10.000đ</option>
+                                                    <option value="20000">20.000đ</option>
+                                                    <option value="50000">50.000đ</option>
+                                                    <option value="100000">100.000đ</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                                Xác thực <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                @Html.Captcha(4)
+                                                @*<div class="radio">
+                                                    <label>
+                                                        <input type="radio" checked="" value="0" id="ckEmail" name="options"> Mã thẻ sẽ gởi qua email, vui lòng đăng nhập vào email để lấy mã thẻ
+                                                    </label>
+                                                </div>*@
+                                                @*<div class="radio">
+                                        <label>
+                                            <input type="radio" value="1" id="ckMac" name="options"> Nếu làm việc trên 1 máy tính cố định, hãy chọn hình thức này
+                                        </label>
+                                    </div>*@
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-xs-12 text-center">
+                                                <button type="submit" class="btn btn-primary">Đổi ngay</button>
+                                            </div>
+                                        </div>
+
+                                } 
+                            </div>
+
+
+                            <div class="tab-pane form-horizontal" id="tab2">
+                                <form id="frmMomo" method="post" action="/Home/PaymentMomo">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                            Họ tên: <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" id="momo_hoten" name="momo_hoten" required="required" class="form-control col-md-7 col-xs-12">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                            Số điện thoại <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" id="momo_dienthoai" name="momo_dienthoai" required="required" class="form-control col-md-7 col-xs-12">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                            Số tiền rút <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="number" id="momo_tienrut" name="momo_tienrut" required="required" min="50000" class="form-control col-md-7 col-xs-12">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-xs-12 text-center">
+                                            <button type="submit" class="btn btn-primary">Gửi yêu cầu</button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                            -->
+
+                            <div class="tab-pane form-horizontal" id="tab3">
+                                <form id="frmBank" method="post" action="/Home/PaymentBank">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                            Tỉnh/Thành phố <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <select id="bank_thanhpho" name="bank_thanhpho" class="form-control">
+                                                <option>TP.Hồ Chí Minh</option>
+                                                <option>Hà Nội</option>
+                                                <option>Đà Nẵng</option>
+                                                <option>Hải Phòng</option>
+                                                <option>Thừa Thiên Huế</option>
+                                                <option>Cần Thơ</option>
+                                                <option>Nam Định</option>
+                                                <option>Nghệ An</option>
+                                                <option>Quảng Ninh</option>
+                                                <option>Đồng Tháp</option>
+                                                <option>Bình Dương</option>
+                                                <option>Lào Cai</option>
+                                                <option>Hà Nam</option>
+                                                <option>Bình Phước </option>
+                                                <option>Quảng Nam </option>
+                                                <option>Thái Nguyên</option>
+                                                <option>Đăk Lăk </option>
+                                                <option>Lạng Sơn</option>
+                                                <option>Bắc Giang</option>
+                                                <option>An Giang</option>
+                                                <option>Kiên Giang</option>
+                                                <option>Thanh Hóa</option>
+                                                <option>Cao Bằng</option>
+                                                <option>Tây Ninh</option>
+                                                <option>Phú Yên</option>
+                                                <option>Bình Định </option>
+                                                <option>Long An </option>
+                                                <option>Phú Thọ</option>
+                                                <option>Hải Dương</option>
+                                                <option>Cà Mau</option>
+                                                <option>Hà Tĩnh</option>
+                                                <option>Bà Rịa - Vũng Tàu</option>
+                                                <option>Hòa Bình</option>
+                                                <option>Quảng Trị</option>
+                                                <option>Ninh Thuận</option>
+                                                <option>Hưng Yên</option>
+                                                <option>Kon Tum</option>
+                                                <option>Tiền Giang</option>
+                                                <option>Ninh Bình</option>
+                                                <option>Bạc Liêu</option>
+                                                <option>Đăk Nông</option>
+                                                <option>Lai Châu</option>
+                                                <option>Bình Thuận</option>
+                                                <option>Yên Bái</option>
+                                                <option>Vĩnh Long</option>
+                                                <option>Lâm Đồng</option>
+                                                <option>Tuyên Quang</option>
+                                                <option>Quảng Ngãi</option>
+                                                <option>Sơn La</option>
+                                                <option>Thái Bình</option>
+                                                <option>Trà Vinh</option>
+                                                <option>Hà Giang</option>
+                                                <option>Đồng Nai</option>
+                                                <option>Điện Biên</option>
+                                                <option>Gia Lai</option>
+                                                <option>Sóc Trăng</option>
+                                                <option>Khánh Hòa</option>
+                                                <option>Vĩnh Phúc</option>
+                                                <option>Hậu Giang</option>
+                                                <option>Bắc Ninh</option>
+                                                <option>Bến Tre</option>
+                                                <option>Quảng Bình</option>
+                                                <option>Bắc Kạn</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                            Ngân hàng <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <select name="bank_nganhang" id="bank_nganhang" class="form-control">
+                                                <option>NH Cong thuong (VietinBank)</option>
+                                                <option>NH Dau Tu va Phat Trien (BIDV)</option>
+                                                <option>NH Ngoai Thuong (VCB)</option>
+                                                <option>NH Nong Nghiep va Phat Trien Nong Thon (AGRIBANK)</option>
+                                                <option>NH TMCP Ky Thuong (Techcombank)</option>
+                                                <option>NH TMCP Sai Gon Thuong Tin (Sacombank)</option>
+                                                <option>NH TMCP Xuat Nhap Khau (Eximbank)</option>
+                                                <option>CITI BANK</option>
+                                                <option>NH TMCP An Binh (ABBANK)</option>
+                                                <option>NH TMCP Bac A</option>
+                                                <option>NH TMCP Ban Viet (Viet Capital Bank)</option>
+                                                <option>NH TMCP Dai Duong (OceanBank)</option>
+                                                <option>NH TMCP Dong A (DongA Bank)</option>
+                                                <option>NH TMCP Dong Nam A (Sea Bank)</option>
+                                                <option>NH TMCP Kien Long</option>
+                                                <option>NH TMCP Nam A</option>
+                                                <option>NH TMCP Phat trien Tp.HCM (HDBank)</option>
+                                                <option>NH TMCP Phuong Dong (OCB)</option>
+                                                <option>NH TMCP Quan Doi (MB)</option>
+                                                <option>NH TMCP Quoc Te (VIB BANK)</option>
+                                                <option>NH TMCP Sai Gon (SCB)</option>
+                                                <option>NH TMCP Sai Gon - Ha Noi (SHB)</option>
+                                                <option>NH TMCP Sai Gon Cong Thuong (SAIGON BANK)</option>
+                                                <option>NH TMCP Tien Phong</option>
+                                                <option>NH TMCP Viet A</option>
+                                                <option>NH TMCP Viet Nam Thinh Vuong (VPBANK)</option>
+                                                <option>NH TMCP Viet Nam Thuong Tin (VietBank)</option>
+                                                <option>NH TNHH ANZ Viet Nam</option>
+                                                <option>NH TNHH MTV HSBC (VN)</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                            Chi nhánh <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" id="bank_chinhanh" name="bank_chinhanh" required="required" class="form-control col-md-7 col-xs-12">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                            Chủ tài khoản <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" id="bank_chutaikhoan" name="bank_chutaikhoan" required="required" class="form-control col-md-7 col-xs-12">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                            Số tài khoản <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" id="bank_stk" name="bank_stk" required="required" class="form-control col-md-7 col-xs-12">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                            Số tiền rút <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="number" id="bank_tienrut" name="bank_tienrut" required="required" min="200000" class="form-control col-md-7 col-xs-12">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-xs-12 text-center">
+                                            <button type="submit" class="btn btn-primary">Gửi yêu cầu</button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

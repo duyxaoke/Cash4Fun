@@ -1,0 +1,335 @@
+﻿@using CashMe.Service.Models
+@using CashMe.Core.Data
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Dashboard";
+}
+@{
+    var wallet = ViewBag.Wallet as Wallet;
+    var lsTargetMaster = ViewBag.lsTargetMaster as IEnumerable<TargetMaster>;
+    var target = ViewBag.Target ;
+    var StatusBonus = ViewBag.StatusBonus;
+    var percent = target * 100 / 7000;
+}
+<script src="~/Content/vendors/jquery/dist/jquery.min.js"></script>
+<div class="right_col" role="main">
+    <div style="margin-top:50px">
+
+
+
+
+
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <!--ads-->
+                <!--<a href="http://member.civi.vn/cpc/?sid=9287&bid=10008914" target="_blank"><img src="http://member.civi.vn/imp/b/?sid=9287&bid=10008914" width="100%"/></a> -->
+                
+                <!-- top tiles -->
+                <div class="row top_tiles">
+                    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="tile-stats tile-white bg-blue-sky">
+                            <div class="icon"><i class="fa fa-file-image-o"></i></div>
+                            <div class="count"><span id="CountImage">@ViewBag.CountImage</span> </div>
+                            <h3>Hình ảnh</h3>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="tile-stats tile-white bg-purple">
+                            <div class="icon"><i class="fa fa-user"></i></div>
+                            <div class="count">@ViewBag.TotalRef</div>
+                            <h3>Ref</h3>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="tile-stats tile-white bg-red">
+                            <div class="icon"><i class="fa fa-cc"></i></div>
+                            <div class="count"><span id="CountImage1">@ViewBag.CountImage</span></div>
+                            <h3>Coin</h3>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="tile-stats tile-white bg-blue">
+                            <div class="icon"><i class="fa fa-money"></i></div>
+                            <div class="count"><span id="RealValue">@(Math.Round(ViewBag.RealValue, 1))</span> <sup>vnđ</sup></div>
+                            <h3>Tổng tiền</h3>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- /top tiles -->
+                @*<div class="col-md-6">
+                    <div class="note note-danger">
+                        <h4 class="block">CHÚ Ý QUAN TRỌNG</h4>
+                        <ol>
+                            <li> <h5><strong>TỰ ĐỘNG CẬP NHẬT COIN 3 PHÚT/LẦN.</strong></h5></li>
+                            <li> <h5><strong>KHÔNG ĐƯỢC TẮT TRANG NÀY KHI LÀM VIỆC.</strong></h5></li>
+                            <li> <h5><strong>NẾU TẮT TAB, < 15 PHÚT PHẢI QUAY LẠI KIỂM TRA VÍ.</strong></h5></li>
+                        </ol>
+                    </div>
+
+                    <div class="note note-info">
+                        <h4 class="block">HƯỚNG DẪN</h4>
+                        <ol>
+                            <li> <h5>Click vào nút <strong>"Copy Ví làm việc"</strong></h5></li>
+                            <li> <h5>Click vào Kiếm tiền ngay... Một trang mới sẽ mở ra.</h5></li>
+                            <li> <h5>Dán Mã làm việc của bạn vào ô phía trên nút Claim => Click Claim.</h5></li>
+                            <li> <h5>Gõ đúng ký tự theo yêu cầu.</h5></li>
+                            <li> <h5>Mỗi lượt hoàn thành theo yêu cầu của khung hình sẽ nhận được <strong>01 Coin.</strong></h5></li>
+                            <li> <h5>Quy đổi: <strong class="text-danger">01 Coin = @ViewBag.GiaCoin VNĐ (1000 Coin = @(ViewBag.GiaCoin * 1000) đồng).</strong></h5></li>
+                        </ol>
+                    </div>
+
+                </div>
+                *@
+                <div class="col-md-12">
+                    <div class="note note-danger">
+                        <h5 class="block">HƯỚNG DẪN LÀM VIỆC</h5>
+                        <h2 class="text-center"><strong>DÀNH CHO WINDOWS 7 TRỞ LÊN</strong></h2>
+                        <h2 class="text-center"><strong>VUI LÒNG ĐỌC KỸ HƯỚNG DẪN TRƯỚC KHI TẢI, NHỮNG VẤN ĐỀ ĐÃ CÓ Ở ĐÂY MÀ HỎI LẠI MÌNH XIN KHÔNG TRẢ LỜI NHÉ.</strong></h2>
+                        <ol>
+                            <li> <h5>Tải về phần mềm Cash4FunApp theo phiên bản windows, cách xem phiên bản windows: Chuột phải vào My Computer => Properties, dòng màu vàng như bên dưới là phiên bản windows</h5>
+                            <br />
+                                <img src="~/Content/images/1.jpg" class="img-responsive" style="border:1px solid #000000"/>
+                                <br />
+                            </li>
+                            <li> <h5>Giải nén file vừa tải về và chạy file Cash4FunApp.exe (Biểu tượng chữ C màu xanh)</h5></li>
+                            <li> <h5>Nếu không mở được hoặc báo lỗi => Tải về FileHoTro bên dưới, sau khi tải xong mở thư mục FileHoTro => cài lần lượt .Net Framework.exe và Visual C++.exe</h5></li>
+                            <li> <h5>Khi mở phần mềm sẽ hiện ra form đăng nhập, lúc này nhập tài khoản của bạn vào</h5></li>
+                            <li> <h5>Sau khi đăng nhập thành công sẽ hiển thị captcha để làm việc</h5></li>
+                        </ol>
+                        <div class="text-center">
+                            <a href="https://drive.google.com/open?id=0B1aECCfgT3LMQTFaWVZkTEsxWkk" target="_blank"><button type="button" class="btn btn-primary btn-lg">Cash4FunApp Windows 32Bit</button></a>
+                            <a href="https://drive.google.com/open?id=0B1aECCfgT3LMdUlTUUx3TDdFdHc" target="_blank"><button type="button" class="btn btn-success btn-lg">Cash4FunApp Windows 64Bit</button></a>
+                            <a href="https://drive.google.com/open?id=0B1aECCfgT3LMd050SG1nSnluRzQ" target="_blank"><button type="button" class="btn btn-danger btn-lg">FileHoTro (Khi không mở được app)</button></a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+                    <div class="note note-success">
+                        <h4 class="block">TIP!</h4>
+                        <p>
+                            Với mỗi lượt giới thiệu, bạn được hưởng 10% hoa hồng<br />
+                        <p>
+                            Link ref: <a href="http://cash4fun.net?r=@ViewBag.UserId" target="_blank">http://cash4fun.net?r=@ViewBag.UserId</a>
+                        </p>
+                        <br />
+                        <p>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=http://cash4fun.net?r=@ViewBag.UserId" class="btn btn-dark" target="_blank">
+                                <i class="fa fa-link"></i>Share Facebook
+                            </a>
+                        </p>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="note note-info">
+                        <h4 class="block">MỤC TIÊU LÀM VIỆC NGÀY @DateTime.Now.ToString("dd-MM-yyyy")</h4>
+                        <table class="" style="width:100%">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <table class="table">
+                                            <tbody>
+                                                @foreach (var item in lsTargetMaster)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            <p><i class="fa fa-square @item.Color"></i> > @item.Higher hình ảnh</p>
+                                                        </td>
+                                                        <td>+ @item.Bonus Coin</td>
+                                                        @if (target < item.Higher)
+                                                        {
+                                                            <td><button type="button" class="btn btn-round btn-xs btn-dark">chưa thể nhận</button></td>
+                                                        }
+                                                        else
+                                                        {
+                                                            if (StatusBonus >= item.Id)
+                                                            {
+                                                                <td><button type="button" class="btn btn-round btn-xs btn-success"><i class="fa fa-check"></i> đã nhận</button></td>
+                                                            }
+                                                            else
+                                                            {
+                                                                <td><a onclick="javascript: recieveBonus(@item.Id)" class="btn btn-round btn-xs btn-success">nhận thưởng</a></td>
+                                                            }
+                                                        }
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="progress progress-striped active">
+                            <div class="progress-bar progress-bar-success progressTarget" style="width:@percent%" data-toggle="tooltip" data-placement="top" title="@target hình ảnh - @percent%"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                @*<div class="form-horizontal form-label-left input_mask">
+            <div class="form-group">
+                <label class="control-label col-xs-1"><strong>Mã ví:</strong></label>
+                <div class="col-xs-11">
+                    <input type="text" class="form-control wallet" value="@wallet.Code" readonly>
+                </div>
+            </div>
+            <div class="ln_solid"></div>
+            <div class="form-group">
+                <div class="col-xs-12 text-center">
+                    <button class="btn btn-primary btnCopy">Copy Ví làm việc</button>
+                    <a href="https://faucet.raiblockscommunity.net/form.php?a=@wallet.Code" target="_blank" class="btn btn-danger">Kiếm tiền ngay</a>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Mở nhiều tab:</label>
+                <div class="col-xs-12 text-center">
+                    <a class="btn btn-success" onclick="return Tab1()">Mở tab 1</a>
+                    <a class="btn btn-success" onclick="return Tab2()">Mở tab 2</a>
+                    <a class="btn btn-success" onclick="return Tab3()">Mở tab 3</a>
+                </div>
+            </div>
+
+        </div>*@
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<button type="button" data-toggle="modal" data-target="#ads" id="clickads" style="display:none"></button>
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="ads">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">CHUYÊN MỤC ĐẦU TƯ</h4>
+            </div>
+            <div class="modal-body">
+                <h4>Hiện tại Cash4Fun đang triển khai hệ thống đầu tư lợi nhuận vào Bitconnect, 1 loại coin đang rất có giá trên thị trường tiền ảo, ai quan tâm hình thức kiếm tiền thụ động (thu lãi > 30%/tháng) thì đăng ký theo link bên dưới và liên hệ Cash4Fun để được hướng dẫn đầu tư nhé.
+                    <br /><br /><br />
+                    <a href="https://www.facebook.com/%C4%90%E1%BA%A7u-t%C6%B0-Bitconnect-c%C3%B9ng-Cash4Fun-Ki%E1%BA%BFm-ti%E1%BB%81n-th%E1%BA%ADt-vui-809528299216773/" target="_blank">Fanpage: Đầu tư Bitconnect cùng Cash4Fun - Kiếm tiền thật vui</a>
+                    <br /><br /><br />
+                    <a href="https://bitconnect.co/?ref=duytran1402" target="_blank">Click vào đây để đăng ký bitconnect</a>
+                </h4>
+                <br /><br />
+                <a href="https://bitconnect.co/?ref=duytran1402" target="_blank"><img src="~/Content/images/banner.jpg" width="100%" /></a><br />
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    
+
+
+    //getClaims();
+    getTarget();
+    //function getClaims() {
+    //    jQuery.ajax({
+    //        method: "GET",
+    //        url: '/Home/getClaims1',
+    //        success: function (data, status, xhr) {
+    //            if (data == -1) {
+    //                alert("Hệ thống tự động cập nhật, vui lòng đăng nhập lại!");
+    //                return;
+    //            }
+    //            else if(data.Coin > 0)
+    //            {
+    //                jQuery("#CountImage").text(data.Coin);
+    //                jQuery("#CountImage1").html(data.Coin);
+    //                jQuery("#RealValue").html(parseFloat(data.RealValue).toFixed(1));
+    //            }
+    //        },
+    //        error: function (xhr, status, err) {
+    //            console.log('error');
+    //        }
+    //    });
+    //}
+    function getTarget() {
+        jQuery.ajax({
+            method: "POST",
+            url: '/Service/getTargetByUser',
+            success: function (data, status, xhr) {
+                if (data !== null) {
+                    var percent = data * 100 / 7000;
+                    $('.progressTarget').attr('style', 'width:' + parseFloat(percent).toFixed(1) + '%');
+                    $('.progressTarget').attr('data-original-title', data + ' hình ảnh - ' + parseFloat(percent).toFixed(1) + '%');
+                    
+                }
+            },
+            error: function (xhr, status, err) {
+                console.log(err);
+            }
+        });
+    }
+
+    function recieveBonus(id) {
+        jQuery.ajax({
+            method: "POST",
+            url: '/Service/recieveBonus',
+            data: {id: id},
+            success: function (data, status, xhr) {
+                if (data == 0) {
+                    alert("Không thể nhận!");
+                    return;
+                }
+                else {
+                    alert("Nhận thưởng thành công!");
+                    location.reload();
+                }
+            },
+            error: function (xhr, status, err) {
+                alert("Có lỗi, vui lòng refresh lại trang và thử lại.!");
+            }
+        });
+    }
+
+    jQuery(document).ready(function () {
+        $('#clickads').trigger('click'); 
+        //setInterval(getClaims, 1000 * 180);
+        setInterval(getTarget, 1000 * 60);
+    })
+    var copyTextareaBtn = document.querySelector('.btnCopy');
+
+    jQuery(document).on('click', '.btnCopy', function () {
+        var copyTextarea = document.querySelector('.wallet');
+        copyTextarea.select();
+
+        try {
+            var successful = document.execCommand('copy');
+            var msg = successful ? 'successful' : 'unsuccessful';
+            alert("Đã copy ví thành công, hãy bấm Kiếm tiền ngay và dán vào ô dữ liệu.");
+        } catch (err) {
+            alert("Đã xảy ra lỗi, không thể copy ví vào lúc này.");
+        }
+    })
+
+    function Tab1() {
+        window.open('https://faucet.raiblockscommunity.net/form.php', "windowChild", "width=341, height=548");
+    }
+    function Tab2() {
+        window.open('https://faucet.raiblockscommunity.net/form.php', "windowChild", "width=341, height=548");
+        window.open('https://faucet.raiblockscommunity.net/form.php', "windowChild1", "width=341, height=548 left=358");
+    }
+    function Tab3() {
+        window.open('https://faucet.raiblockscommunity.net/form.php', "windowChild", "width=341, height=548");
+        window.open('https://faucet.raiblockscommunity.net/form.php', "windowChild1", "width=341, height=548 left=358");
+        window.open('https://faucet.raiblockscommunity.net/form.php', "windowChild2", "width=341, height=548 left=716");
+
+    }
+
+</script>

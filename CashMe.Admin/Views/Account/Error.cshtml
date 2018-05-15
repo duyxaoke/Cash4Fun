@@ -1,0 +1,17 @@
+﻿
+@{
+    var mes = TempData["mes"];
+    ViewBag.Title = "Lỗi chứng thực";
+}
+<div class="col-md-4 col-md-offset-4" style="margin-top:35px;margin-bottom:35px">
+    <aside id="tg-sidebar" class="tg-sidebar">
+        <div class="tg-widget tg-widgetlogin">
+            <div class="tg-widgetcontent">
+                <div class="tg-widgettitle">
+                    <h3>@ViewBag.errorMessage</h3>
+                </div>
+                <p>@mes</p>
+            </div>         
+        </div>
+    </aside>
+</div>

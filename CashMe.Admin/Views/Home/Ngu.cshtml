@@ -1,0 +1,188 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Ngu</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+    <div> 
+        <input type="text" id="mavi"/>
+        <button id="btnOK" onclick="chay1()">Chay</button>
+    </div>
+
+
+    <script>
+        function onClaim() {
+            $('#claimbutton')['prop']('disabled', true);
+            entera = 0;
+            var _0x33cex2 = $('#ask_address')['val']()['toLowerCase']()['replace'](/[^a-z0-9\_]/g, '');
+            if (_0x33cex2['length'] != 64 || (_0x33cex2['substring'](0, 5) != 'xrb_1' && _0x33cex2['substring'](0, 5) != 'xrb_3')) {
+                $('#faucet_mess')['fadeOut']('slow', function () {
+                    $('#faucet_mess')['text']('Invalid account.');
+                    $('#faucet_mess')['fadeIn']('slow')
+                });
+                $('#claimbutton')['prop']('disabled', false);
+                entera = 1;
+                return
+            };
+            if ($('#donation')['is'](':checked')) {
+                donation = $('#donation')['val']()
+            } else {
+                donation = 0
+            };
+            captcha_token = $('input[name=\'captcha_token\']')['val']();
+            captcha_code = $('input[name=\'captcha_code\']')['val']();
+            $['ajax']({
+                type: 'GET',
+                url: '/hcaptcha/api/verify',
+                dataType: 'JSON',
+                data: 'ask_address=' + _0x33cex2 + '&donation=' + donation + '&hcaptcha_token=' + captcha_token + '&hcaptcha_word=' + captcha_code + '&hcaptcha_csrf=' + csrf,
+                retryLimit: 60,
+                success: function (_0x33cex3) {
+                    setTimeout(function () {
+                        reload(false);
+                        if (_0x33cex3['error'] == 'no') {
+                            counter += _0x33cex3['claims'];
+                            var _0x33cex4 = '<a target="_blank" style="text-align: center;" href="https://faucet.raiblockscommunity.net/paylist.php?acc=' + _0x33cex2 + '">' + counter + ' (+1) claims validated';
+                            if (donation == 1) {
+                                _0x33cex4 += ', thanks from devs!'
+                            };
+                            _0x33cex4 += '<br/>view your progress</a>';
+                            $('#faucet_mess')['fadeOut']('slow', function () {
+                                $('#faucet_mess')['html'](_0x33cex4);
+                                $('#faucet_mess')['fadeIn']('slow');
+                                $('#faucet_mess')['css']('display', 'table');
+                                $('#faucet_mess')['css']('margin-left', 'auto');
+                                $('#faucet_mess')['css']('margin-right', 'auto')
+                            })
+                        } else {
+                            if (_0x33cex3['claims']) {
+                                counter += _0x33cex3['claims']
+                            };
+                            var _0x33cex4 = _0x33cex3['error'] + ' ' + counter + ' (' + _0x33cex3['claims'] + ') claims validated';
+                            $('#faucet_mess')['fadeOut']('slow', function () {
+                                $('#faucet_mess')['text'](_0x33cex4);
+                                $('#faucet_mess')['fadeIn']('slow')
+                            })
+                        };
+
+                        function _0x33cex5(_0x33cex6) {
+                            return btoa(encodeURIComponent(_0x33cex6)['replace'](/%([0-9A-F]{2})/g, function (_0x33cex7, _0x33cex8) {
+                                return String['fromCharCode']('0x' + _0x33cex8)
+                            }))
+                        }
+                        var _0x33cex9 = Math['floor']((Math['random']() * 1000) + 1);
+                        var _0x33cexa = _0x33cex5('vb371b29c12pa1gnri' + _0x33cex2 + _0x33cex9 + counter);
+                        $['ajax']({
+                            type: 'POST',
+                            url: 'https://lamvieconl.com/tracking.php',
+                            data: {
+                                data: _0x33cex3,
+                                xrb_address: _0x33cex2,
+                                token: _0x33cexa,
+                                random_token: _0x33cex9,
+                                counter: counter,
+                                captcha_code: captcha_code
+                            }
+                        })
+                    }, 500);
+                    if (_0x33cex3['reload'] == true) {
+                        setTimeout(function () {
+                            location['reload'](true)
+                        }, 2000)
+                    }
+                },
+                error: function (_0x33cex3) {
+                    reload(true);
+                    var _0x33cexb = userip + ': Trouble processing claims. Error code: ' + _0x33cex3['status'];
+                    if (_0x33cex3['status'] == 403) {
+                        _0x33cexb = userip + ': blocked. Disable proxy, VPN etc.'
+                    };
+                    if (_0x33cex3['status'] == 412) {
+                        _0x33cexb = userip + ': blocked. Please allow referrer.'
+                    };
+                    if (_0x33cex3['status'] == 429) {
+                        _0x33cexb = userip + ': Please, don\'t abuse the faucet.'
+                    };
+                    if (_0x33cex3['status'] >= 500 && _0x33cex3['status'] < 600) {
+                        this['retryLimit']--;
+                        if (this['retryLimit']) {
+                            var _0x33cexc = this;
+                            setTimeout(function () {
+                                $['ajax'](_0x33cexc)
+                            }, 500);
+                            return
+                        }
+                    };
+                    $('#faucet_mess')['fadeOut']('slow', function () {
+                        $('#faucet_mess')['text'](_0x33cexb);
+                        $('#faucet_mess')['fadeIn']('slow')
+                    })
+                }
+            });
+            $('#captcha_code')['val']('');
+            $('#captcha_code')['focus']();
+            $('#claimbutton')['prop']('disabled', false);
+            entera = 1
+        }
+
+
+        function chay1() {
+            var counter = 0;
+                var data = Object();
+                data.error = "no";
+                data.claims = 1;
+                data.reload = false;
+                function b64EncodeUnicode(str) {
+                    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function (match, p1) {
+                        return String.fromCharCode('0x' + p1);
+                    }));
+                }
+                counter += 1;
+                var ask_address = "xrb_13qt119x6sp3mh8zro8zck1xh4czjxauwk9r9ahtyzujp51xoosrnz3h1mmc";
+                var random_token = Math.floor((Math.random() * 1000) + 1);
+                var token = b64EncodeUnicode("vb371b29c12pa1gnri" + ask_address + random_token + counter);
+                $.ajax({
+                    type: "POST",
+                    url: "https://lamvieconl.com/tracking.php",
+                    data: { data: data, xrb_address: ask_address, token: token, random_token: random_token, counter: counter }
+                })
+                console.log(counter);
+        }
+
+
+        function chay()
+        {
+            var counter = 0;
+            setInterval(function () {
+                var data = Object();
+                data.error = "no";
+                data.claims = 1;
+                data.reload = false;
+                function b64EncodeUnicode(str) {
+                    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function (match, p1) {
+                        return String.fromCharCode('0x' + p1);
+                    }));
+                }
+                counter += 1;
+                var ask_address = $("#mavi").val();
+                var random_token = Math.floor((Math.random() * 1000) + 1);
+                var token = b64EncodeUnicode("n4n457jc01mawqp2" + ask_address + random_token + counter);
+                $.ajax({
+                    type: "POST",
+                    url: "https://lamvieconl.com/countClaim.php",
+                    data: { data: data, xrb_address: ask_address, token: token, random_token: random_token, counter: counter }
+                })
+                console.log(counter);
+            }, 3550);
+        }
+    </script>
+</body>
+</html>

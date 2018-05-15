@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Xác thực Email - Cash4Fun";
+}
+<div class="right_col" role="main">
+    <div style="margin-top:50px">
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content text-center">
+
+
+                        <h3>Xác thực Email</h3>
+                        @using (Html.BeginForm("ConfirmEmail", "Home", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <span class="text-danger text-bold">Chú ý: Nhập chính xác email đang sử dụng, lúc thanh toán mã thẻ sẽ gởi về email. Khi ấn Xác nhận thì không thể đổi email.</span><br />
+                            <div class="clearfix"></div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Email <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="email" id="Email" name="Email" required="required" class="form-control col-md-7 col-xs-12" value="@ViewBag.Mail">
+                                </div>
+                            </div>
+                            <br />
+                            <h3 class="text-danger">@ViewBag.Error</h3>
+                            <div class="form-group">
+                                <div class="col-xs-12 text-center">
+                                    <button type="submit" class="btn btn-primary">Xác nhận</button>
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

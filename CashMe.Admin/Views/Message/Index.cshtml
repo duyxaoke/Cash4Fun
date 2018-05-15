@@ -1,0 +1,67 @@
+﻿@using CashMe.Service.Models
+@model IEnumerable<MessageModel>
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+    a{
+        color:#000000;
+        cursor: pointer;
+    }
+</style>
+<!-- BEGIN PAGE CONTENT -->
+<div class="panel">
+    <div class="panel-header header-line text-center">
+        <h3><strong>THÔNG BÁO</strong></h3>
+    </div>
+    <div class="panel-body bg-white">
+        <div class="col-md-12">
+            <section class="app">
+                <aside class="aside-sm emails-list">
+                    <section>
+                        <div class="tab-content">
+                            <div class="tab-pane fade in active" id="tab">
+                                <div class="messages-list withScroll show-scroll" data-padding="180" data-height="window">
+                                    @foreach (var item in Model)
+                                    {
+                                        <div class="message-item media" style="border-bottom:1px solid #e2e0e0">
+                                            <a onclick="javascript: ShowMessageIndex(@item.Id)">
+                                                <div class="media">
+                                                    <div class="media-body">
+                                                        <div class="sender"><strong>@item.FromUserName</strong></div>
+                                                        <div class="subject"><span class="subject-text">@item.Title</span></div>
+                                                        <div class="date">@item.CreateDate.Value.ToString("dd/MM/yyyy hh:mm")</div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    }
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </section>
+                </aside>
+                <div class="email-details">
+                    <section>
+                        <div class="email-subject">
+                            <h2 class="Title">@Model.FirstOrDefault().Title</h2>
+                        </div>
+                        <div class="email-details-inner">
+                            <br /><br />
+
+                            <div class="Body">
+                                @Html.Raw(Model.FirstOrDefault().Body)
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<!-- END PAGE CONTENT -->
+

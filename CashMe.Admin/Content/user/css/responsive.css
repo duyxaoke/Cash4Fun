@@ -1,0 +1,329 @@
+ /*
+* ----------------------------------------------------------------------------------------
+    Author       : miniboss
+    Template Name: jhon - Personal Portfolio Template
+    Tags: One Page, Creative Template, Portfolio, Personal
+    Version      : 1.0
+* ----------------------------------------------------------------------------------------
+*/
+
+/*---------------------------------------------
+        Responsive Css
+---------------------------------------------*/
+@media only screen and (min-width:992px) and (max-width:1200px){
+    h1 {
+        font-size: 50px;
+    }
+    .text_animation > h4 {
+        font-size: 19px;
+        line-height: 22px;
+    }
+    .text_animation > h1 {
+        font-size: 55px;
+        line-height: 60px;
+    }
+    .leader_details > h2 {
+        font-size: 31px;
+        line-height: 38px;
+        margin-bottom: 18px;
+    }
+}
+/*
+    Tab Screen
+*/
+@media only screen and (min-width:768px) and (max-width: 991px){
+    /*.container{
+        width: 750px;
+    }*/
+    .pb_100{
+        padding-bottom: 0px;
+        padding-top: 0px;
+
+    }
+    .clas100 {
+        padding-bottom: 49px;
+        padding-top: 49px;
+    }
+    .client_p {
+        padding-bottom: 47px;
+        padding-top: 0;
+    }
+    .leader_details > h2 {
+        font-size: 26px;
+        line-height: 33px;
+        margin-bottom: 13px;
+    }
+    .leader_details > p {
+        padding-bottom: 0;
+        line-height: 24px;
+    }
+    .service_icon > i {
+        font-size: 30px;
+    }
+    .skill_items {
+        padding-bottom: 38px;
+    }
+    .skill_pb {
+        padding-bottom: 45px;
+    }
+    .skill_area .clas100{
+        padding-bottom: 0px;
+        padding-top: 0px;
+    }
+    .main_menu .nav > li > a {
+	   letter-spacing: 1px;
+    }
+    h1 {
+	   font-size: 50px;
+    }
+    .leader_details {
+        padding-bottom: 50px;
+        padding-top: 20px;
+    }
+    .portfolio_area{
+        padding-top: 70px;
+        padding-bottom: 70px;
+    }
+    .blog_area{
+        padding-top: 70px;
+        padding-bottom: 70px;
+    }
+    .client_details > p{
+        font-size: 16px;
+    }
+    .blog_all_details > h2{
+        font-size: 16px;
+    }
+    .text_animation > h4{
+        font-size: 17px;
+    }
+    .text_animation > h1 {
+        font-size: 43px;
+        line-height: 51px;
+    }
+    .comment_cls {
+        width: 100%;
+    }
+    .comment_textarea {
+         width: 100%;
+    }
+
+}
+
+/*
+    SMart Phone Device
+*/
+
+@media only screen and (min-width:300px) and (max-width: 767px){
+    .service_title > h3 {
+        font-size: 20px;
+    }
+    .service_title {
+        padding-bottom: 14px;
+        padding-top: 12px;
+    }
+    .service_details > p {
+        font-size: 15px;
+        line-height: 22px;
+    }
+    .service_icon > i {
+        font-size: 30px;
+    }
+    .widget_social_icon{
+        text-align: center;
+        margin-top: 0px;
+    }
+    .clas100 {
+        padding-bottom: 36px;
+        padding-top: 15px;
+    }
+    .section_title >h2 {
+        font-size: 28px;
+        line-height: 28px;
+    }
+    .skill_items {
+        padding-bottom: 40px;
+    }
+    .client_p {
+        padding-top: 28px;
+    }
+    .pb_100 {
+        padding-top: 0;
+    }
+    .contact_information{
+        text-align: center;
+    }
+    h1 {
+	   font-size: 40px;
+    }
+    .text_animation > h4{
+        font-size: 12px;
+    }
+    .text_animation > h1 {
+        font-size: 17px;
+        line-height: 31px;
+    }
+    .person_pictur{
+        padding-top: 30px;
+    }
+    .service_area{
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    .experience_area{
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    .portfolio_area{
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    .blog_area{
+        padding-top: 50px;
+        padding-bottom: 20px;
+    }
+    .contact_information{
+        text-align: center;
+    }
+  .single_contact_info {
+        width: 100%;
+        position: relative;
+        float: none;
+        text-align: center;
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flex;
+        display: -o-flex;
+        display: flex;
+        -webkit-justify-content: center;
+        -moz-justify-content: center;
+        -ms-justify-content: center;
+        -o-justify-content: center;
+        justify-content: center;
+    }
+    .info_details {
+        text-align: left;
+    }
+    .contact_area{
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    .padd_bott {
+        padding-bottom: 70px;
+    }
+    .single_icon > a {
+        margin-right: 5px;
+    }
+    .widget_social_icon{
+        padding-top: 15px;
+    }
+    .client_details > p
+    {
+        font-size: 14px;
+    }
+    .my_resume_details span{
+        font-size: 17px;
+    }
+    .my_resume_details > h3{
+        font-size: 17px;
+    }
+    .leader_details {
+        margin-top: 70px;
+    }
+    .leader_details > h2 {
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+    .leader_details > p {
+        font-size: 14px;
+    }
+    .navigation_area.sticky .mobile_menu {
+        top: -51px;
+    }
+    .single_service {
+        text-align: center;
+    }
+    .service_title > h3 {
+        text-align: center;
+    }
+    .portfolio_wapper {
+        margin-bottom: 30px;
+    }
+    .resume_box {
+        width: 130px;
+    }
+    .my_resume_details {
+        padding: 10px;
+    }
+/*-----blog comment-----*/
+    .comment_cls {
+        width: 100%;
+    }
+    .comment_textarea {
+        width: 100%;
+    }
+    .reply_person {
+        margin-left: 0px;
+    }
+
+/*-------mobile menu-----*/
+    .mobile_menu{
+        display: block;
+    }
+    .main_menu {
+        background: #555 none repeat scroll 0 0;
+        text-align: right;
+        width: 100%;
+    }
+    .main_menu ul li {
+        background: #000 none repeat scroll 0 0;
+        border-bottom: 1px solid #333;
+        display: block;
+        margin-right: 10px;
+        width: 100%;
+    }
+    .main_menu .nav > li > a::before {
+        display: none;
+    }
+    .navigation_area.sticky .main_menu .nav > li > a {
+        color: #fff;
+        line-height: 46px;
+        padding: 0 10px;
+    }
+    .main_menu .nav > li > a {
+        line-height: 46px;
+        text-align: left;
+    }
+    .mobile_menu > i {
+        color: #fff;
+        font-size: 24px;
+    }
+    .all_input_form > h4 {
+        margin-top: 22px;
+    }
+    .clients_says .owl-next {
+        right: -15px;
+    }
+    .clients_says .owl-prev {
+        left: -15px;
+    }
+    .quote_tile > p{
+        font-size: 14px;
+        line-height: 25px;
+    }
+}
+
+@media only screen and (min-width:480px) and (max-width: 767px){
+    .container{
+        width: 450px;
+    }
+    .leader_details > h2 {
+        font-size: 20px;
+        line-height: 25px;
+        margin-bottom: 12px;
+    }
+    .leader_details > p {
+        font-size: 14px;
+        line-height: 24px;
+    }
+}
